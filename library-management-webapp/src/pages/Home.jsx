@@ -1,29 +1,29 @@
-import Resource from "../components/Resource";
+import ResourceButton from "../components/ResourceButton";
 
 export default function Home() {
   return (
-    <main className="container">
+    <main>
       <p className="title">Welcome to the Library Management Web App! </p>
       <p className="subtitle">
         Choose one of the following options to start managing your library:
       </p>
       <div className="grid-container">
-        <Resource
+        <ResourceButton
           img="/src/images/add-image.png"
           route="/add"
           operation="Add"
         />
-        <Resource
-          img="/src/images/get-image.jpg"
+        <ResourceButton
+          img="/src/images/get-image.png"
           route="/get"
           operation="Get"
         />
-        <Resource
+        <ResourceButton
           img="/src/images/update-image.png"
           route="/update"
           operation="Update"
         />
-        <Resource
+        <ResourceButton
           img="/src/images/delete-image.png"
           route="/delete"
           operation="Delete"

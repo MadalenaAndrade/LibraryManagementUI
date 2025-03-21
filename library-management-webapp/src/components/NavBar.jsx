@@ -1,27 +1,14 @@
-export default function NavBar() {
+import { NavLink } from "react-router-dom";
+
+export default function NavBar(props) {
   return (
-    <ul>
-      <li>
-        <a href="/">Home</a>
-      </li>
-      <li>
-        <a href="#about">About</a>
-      </li>
-      <li>
-        <a href="/Add">Add Resource</a>
-      </li>
-      <li>
-        <a href="#home">Get Resource</a>
-      </li>
-      <li>
-        <a href="#home">Update Resource</a>
-      </li>
-      <li>
-        <a href="#home">Delete Resource</a>
-      </li>
-      <li>
-        <a href="#home">Contact</a>
-      </li>
-    </ul>
+    <li>
+      <NavLink
+        to={props.path}
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
+        {props.text}
+      </NavLink>
+    </li>
   );
 }

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Resource(props) {
+export default function ResourceButton(props) {
   return (
     <div className="item">
       <img src={props.img} className="resource-image" />

@@ -5,18 +5,47 @@ import DeleteResource from "./pages/DeleteResource";
 import UpdateResource from "./pages/UpdateResource";
 import GetResource from "./pages/GetResource";
 import Header from "./components/Header";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 export default function App() {
+  const homeRoute = "/";
+  const addRoute = "/add";
+  const deleteRoute = "/delete";
+  const updateRoute = "/update";
+  const getRoute = "/get";
+  const aboutRoute = "/about";
+  const contactRoute = "/contact";
+
   return (
     <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/add" element={<AddResource />} />
-        <Route path="/delete" element={<DeleteResource />} />
-        <Route path="/update" element={<UpdateResource />} />
-        <Route path="/get" element={<GetResource />} />
-      </Routes>
+      <div className="navHeader">
+        <nav>
+          <ul>
+            <NavBar path={homeRoute} text="Home" />
+            <NavBar path={addRoute} text="Add Resource" />
+            <NavBar path={deleteRoute} text="Delete Resource" />
+            <NavBar path={updateRoute} text="Update Resource" />
+            <NavBar path={getRoute} text="Get Resource" />
+            <NavBar path={aboutRoute} text="About" />
+            <NavBar path={contactRoute} text="Contact" />
+          </ul>
+        </nav>
+
+        <Header />
+      </div>
+
+      <div className="pageContent">
+        <Routes>
+          <Route path={homeRoute} element={<Home />} />
+          <Route path={addRoute} element={<AddResource />} />
+          <Route path={deleteRoute} element={<DeleteResource />} />
+          <Route path={updateRoute} element={<UpdateResource />} />
+          <Route path={getRoute} element={<GetResource />} />
+        </Routes>
+      </div>
+
+      <Footer />
     </>
   );
 }
