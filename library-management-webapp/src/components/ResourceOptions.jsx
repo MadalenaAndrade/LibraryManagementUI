@@ -10,10 +10,39 @@ export default function ResourceOptions(props) {
     setShowForm(!showForm);
   };
 
-  // placeholders dependent of resource        ---------------------TODO add other entities-------------
+  // placeholders dependent of resource
   const formFields = {
     Author: [{ placeholder: "Author name" }],
-    Book: [{ placeholder: "Serial Number" }, { placeholder: "Title" }],
+    Book: [
+      { placeholder: "Serial Number" },
+      { placeholder: "Title" },
+      { placeholder: "Year" },
+      { placeholder: "Fine per day" },
+      { placeholder: "Publisher name" },
+      { placeholder: "Author names" },
+      { placeholder: "Category names" },
+      { placeholder: "Total amount" },
+    ],
+    BookCopy: [
+      { placeholder: "Serial Number" },
+      { placeholder: "Book condition" },
+      { placeholder: "Notes" },
+    ],
+    Category: [{ placeholder: "Category name" }],
+    Client: [{ placeholder: "Client name" }],
+    Publisher: [{ placeholder: "Publisher name" }],
+    Rent: [
+      { placeholder: "Client ID" },
+      { placeholder: "Client date of birth" },
+      { placeholder: "Client NIF" },
+      { placeholder: "Client contact" },
+      { placeholder: "Client address" },
+    ],
+    RentReception: [
+      { placeholder: "Rent ID" },
+      { placeholder: "Return date" },
+      { placeholder: "Received condition" },
+    ],
   };
 
   return (
