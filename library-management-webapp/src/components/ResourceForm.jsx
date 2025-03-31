@@ -1,22 +1,17 @@
-import { useState } from "react";
+import React from "react";
 
-export default function ResourceForm({ placeholder }) {
-  const [field, setField] = useState("");
-
-  // function to info Input
-  const handleInputChange = (e) => {
-    setField(e.target.value);
-  };
-
+export default function ResourceForm(props) {
   return (
-    <>
-      <input
-        type="text"
-        placeholder={placeholder}
-        value={field}
-        onChange={handleInputChange}
-      />
-      <button onClick={() => console.log(field)}>Submit</button>
-    </>
+    <form className="form">
+      <label>
+        Author Name:
+        <input type="text" name="authorName" />
+      </label>
+      <label>
+        Author Name2:
+        <input type="text" name="authorName" />
+      </label>
+      <button>Submit</button>
+    </form>
   );
 }
