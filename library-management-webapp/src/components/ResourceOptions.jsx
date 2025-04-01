@@ -15,7 +15,7 @@ export default function ResourceOptions(props) {
       <button onClick={displayForm} className="button">
         {props.resource}
       </button>
-      {showForm && <ResourceForm type={props.type} />}
+      {showForm && <ResourceForm type={props.type} resource={props.resource} />}
     </section>
   );
 }

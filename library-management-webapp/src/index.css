@@ -132,6 +132,7 @@ footer > p {
   text-align: center;
   font-size: medium;
   background-color: #487fd8; 
+  max-width: 200px;
 }  
 
 .form {
@@ -140,14 +141,16 @@ footer > p {
   display: flex;
   flex-direction:column;
   gap: 5px;
+  max-width: 200px;
 }
 
 label {
   text-align: left;
+  max-width: 200px;
 }
 
 input {
-  width: 97%;
+  width: 96%;
 }
 
 /* for small windows so that content isn't behind navbar */
