@@ -1,57 +1,84 @@
 import React from "react";
 import Author from "../config/author";
 import Book from "../config/book";
+import BookCopy from "../config/BookCopy";
+
+import TextAreaField from "./InputTextAreaField";
+import RadioField from "./InputRadioField";
+
+import ArrayField from "./InputArrayField";
+import InputField from "./InputField";
 
 export default function ResourceForm(props) {
-  const resourceConfigs = { Author, Book };
+  const resourceConfigs = { Author, Book, BookCopy };
+
   // fields that will be used corresponding to the recource name and type
   const fields = resourceConfigs[props.resource][props.type];
 
-  const [array, setArray] = React.useState([]); // for user to add more fields in the specific cases
+  // fields of array type (fields are filtered by type and acumulated as objects name: "")
+  const defaultArrayFields = fields
+    .filter((field) => field.type === "array")
+    .reduce((acc, field) => {
+      acc[field.name] = [""];
+      return acc;
+    }, {});
 
-  function toggleButton(field) {
-    //setArray(prevArray => [...prevArray, resourceConfigs[] ])
+  // state to change arrayFields such as authors and categories in books
+  const [arrayFields, setArrayFields] = React.useState(defaultArrayFields);
+
+  function handleArrayFieldChange(fieldName, index, e) {
+    const newArrayFields = { ...arrayFields };
+    newArrayFields[fieldName][index] = [e.target.value];
+    setArrayFields(newArrayFields);
   }
 
-  const formElements = fields.map((field) => (
-    <label>
-      {field.label}
-      {field.type !== "array" && (
-        <input
-          type={field.type}
-          name={field.name}
-          pattern={field.pattern ? field.pattern : null}
-          min={field.min ? field.min : null}
-          max={field.max ? field.max : null}
-          maxLength={field.maxLength ? field.maxLength : null}
-          step={field.step ? field.step : null}
-          title={field.title ? field.title : null}
-          required={field.required ? field.required : false}
+  function addArrayField(fieldName) {
+    setArrayFields((prevArray) => ({
+      ...prevArray,
+      [fieldName]: [...arrayFields[fieldName], ""],
+    }));
+  }
+
+  function removeArrayField(fieldName, index) {
+    const newArrayFields = { ...arrayFields };
+    newArrayFields[fieldName].splice(index, 1);
+    setArrayFields(newArrayFields);
+  }
+
+  // Function to select the right field type
+  function selectFieldOptions(field) {
+    if (field.type === "array") {
+      return (
+        <ArrayField
+          field={field}
+          arrayValues={arrayFields[field.name]}
+          onChange={handleArrayFieldChange}
+          onAdd={addArrayField}
+          onRemove={removeArrayField}
         />
-      )}
-      {field.type === "array" && (
-        <>
-          <input
-            type="text"
-            name={field.name}
-            pattern={field.pattern ? field.pattern : null}
-            min={field.min ? field.min : null}
-            max={field.max ? field.max : null}
-            maxLength={field.maxLength ? field.maxLength : null}
-            step={field.step ? field.step : null}
-            title={field.title ? field.title : null}
-            required={field.required ? field.required : false}
-          />
-          <button type="button" onClick={}>+</button>
-        </>
-      )}
-    </label>
-  ));
+      );
+    } else if (field.type === "radio") {
+      return <RadioField field={field} />;
+    } else if (field.type === "textArea") {
+      return <TextAreaField field={field} />;
+    } else {
+      return <InputField field={field} />;
+    }
+  }
+
+  function renderField(field) {
+    return (
+      <label key={field.id}>
+        {field.label}
+        {selectFieldOptions(field)}
+      </label>
+    );
+  }
 
   return (
     <form className="form">
-      {formElements}
-      <button>Submit</button>
+      {fields.map(renderField)}
+      <button className="submit-button">Submit</button>
     </form>
   );
 }
