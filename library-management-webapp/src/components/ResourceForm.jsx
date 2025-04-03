@@ -1,7 +1,8 @@
 import React from "react";
 import Author from "../config/author";
 import Book from "../config/book";
-import BookCopy from "../config/BookCopy";
+import BookCopy from "../config/bookCopy";
+import Category from "../config/category";
 
 import TextAreaField from "./InputTextAreaField";
 import RadioField from "./InputRadioField";
@@ -10,7 +11,7 @@ import ArrayField from "./InputArrayField";
 import InputField from "./InputField";
 
 export default function ResourceForm(props) {
-  const resourceConfigs = { Author, Book, BookCopy };
+  const resourceConfigs = { Author, Book, BookCopy, Category };
 
   // fields that will be used corresponding to the recource name and type
   const fields = resourceConfigs[props.resource][props.type];
@@ -57,8 +58,6 @@ export default function ResourceForm(props) {
           onRemove={removeArrayField}
         />
       );
-    } else if (field.type === "radio") {
-      return <RadioField field={field} />;
     } else if (field.type === "textArea") {
       return <TextAreaField field={field} />;
     } else {
@@ -67,7 +66,12 @@ export default function ResourceForm(props) {
   }
 
   function renderField(field) {
-    return (
+    return field.type === "radio" ? (
+      <fieldset>
+        <legend key={field.id}>{field.label}</legend>
+        <RadioField field={field} />
+      </fieldset>
+    ) : (
       <label key={field.id}>
         {field.label}
         {selectFieldOptions(field)}
