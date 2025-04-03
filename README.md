@@ -54,9 +54,10 @@ _Screenshots will be added as development progresses_
 <img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/ResourcePage.png?raw=true" width="350" alt="Resource Page Example">
 
 ### Forms examples
-
-<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/FormExample1.png?raw=true" width="175" alt="Form Example 1"> <br>
-<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/FormExample2.png?raw=true" width="175" alt="Form Example 2">
+<p>
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/FormExample1.png?raw=true" width="175" alt="Form Example 1" style="vertical-align: top">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/FormExample2.png?raw=true" width="175" alt="Form Example 2" style="vertical-align: top">
+<p>
 
 ## 🔄 Current Development Status
 
