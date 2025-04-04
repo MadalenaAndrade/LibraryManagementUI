@@ -182,6 +182,10 @@ textarea {
   align-items: start;
 }
 
+.info-detail {
+  font-size: 12px;
+}
+
 .field-button, .submit-button {
   background-color: #487fd8;
   color:#f1f1f1;

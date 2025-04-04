@@ -3,15 +3,26 @@ import Author from "../config/author";
 import Book from "../config/book";
 import BookCopy from "../config/bookCopy";
 import Category from "../config/category";
-
+import Client from "../config/client";
+import Publisher from "../config/publisher";
+import Rent from "../config/rent";
+import RentReception from "../config/rentReception";
 import TextAreaField from "./InputTextAreaField";
 import RadioField from "./InputRadioField";
-
 import ArrayField from "./InputArrayField";
 import InputField from "./InputField";
 
 export default function ResourceForm(props) {
-  const resourceConfigs = { Author, Book, BookCopy, Category };
+  const resourceConfigs = {
+    Author,
+    Book,
+    BookCopy,
+    Category,
+    Client,
+    Publisher,
+    Rent,
+    RentReception,
+  };
 
   // fields that will be used corresponding to the recource name and type
   const fields = resourceConfigs[props.resource][props.type];
@@ -60,6 +71,8 @@ export default function ResourceForm(props) {
       );
     } else if (field.type === "textArea") {
       return <TextAreaField field={field} />;
+    } else if (field.type === "info") {
+      return <p className="info-detail">{field.info}</p>;
     } else {
       return <InputField field={field} />;
     }
