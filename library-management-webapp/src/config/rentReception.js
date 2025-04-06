@@ -3,5 +3,9 @@ export default {
         { id: 1, name: "rentId", label: "Rent Id: ", type: "number", placeholder: 1, min: 1, required: true  },
         { id: 2, name: "returnDate", label: "Return Date: ", type: "date", placeholder: new Date().toISOString().split('T')[0], min: "2020-01-01", max: new Date().toISOString().split('T')[0], required: false  },
         { id: 3, name: "receivedCondition", label: "Received Condition: ", type: "radio",  options: ["As new", "Good", "Used", "Bad"], required: true  }
+    ],
+    get: [
+        { id: 1, name: "id", label: "Rent ID (Optional): ", type: "number", placeholder: 1, min: 1, required: false },
+        { id: 2, info: "Note: All fields are optional. Leave them blank to get everything.", type: "info"}
     ]
 }

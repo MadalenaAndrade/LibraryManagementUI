@@ -9,7 +9,7 @@ export default function RadioField({ field }) {
               name={field.name}
               value={option}
               required={field.required ? field.required : false}
-              defaultChecked={index === 0}
+              defaultChecked={field.required ? index === 0 : null}
             />
             <label>{option}</label>
           </div>

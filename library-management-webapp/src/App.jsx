@@ -4,6 +4,8 @@ import AddResource from "./pages/AddResource";
 import DeleteResource from "./pages/DeleteResource";
 import UpdateResource from "./pages/UpdateResource";
 import GetResource from "./pages/GetResource";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
@@ -42,6 +44,8 @@ export default function App() {
           <Route path={deleteRoute} element={<DeleteResource />} />
           <Route path={updateRoute} element={<UpdateResource />} />
           <Route path={getRoute} element={<GetResource />} />
+          <Route path={aboutRoute} element={<About />} />
+          <Route path={contactRoute} element={<Contact />} />
         </Routes>
       </div>
 
