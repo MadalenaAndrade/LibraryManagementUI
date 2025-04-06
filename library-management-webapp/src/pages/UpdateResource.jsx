@@ -45,18 +45,6 @@ export default function UpdateResource() {
           resource="Publisher"
           type="update"
         />
-        <ResourceOptions
-          src="/src/images/rent-icon.png"
-          alt="Rent icon"
-          resource="Rent"
-          type="update"
-        />
-        <ResourceOptions
-          src="/src/images/rent-reception-icon.png"
-          alt="Rent reception Icon"
-          resource="RentReception"
-          type="update"
-        />
       </div>
     </main>
   );

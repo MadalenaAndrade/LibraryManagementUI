@@ -5,5 +5,11 @@ export default {
     get: [
         { id: 1, name: "id", label: "Publisher ID (Optional): ", type: "number", placeholder: 1, min: 1, required: false },
         { id: 2, info: "Note: All fields are optional. Leave them blank to get everything.", type: "info"}
+    ],
+    update: [
+        { id: 1, name: "id", label: "Publisher ID: ", type: "number", placeholder: 1, min: 1, required: true }
+    ],
+    delete: [
+        { id: 1, name: "id", label: "Publisher ID: ", type: "number", placeholder: 1, min: 1, required: true }
     ]
 }

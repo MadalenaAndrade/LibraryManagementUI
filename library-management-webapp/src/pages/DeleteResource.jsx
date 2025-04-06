@@ -45,18 +45,6 @@ export default function DeleteResource() {
           resource="Publisher"
           type="delete"
         />
-        <ResourceOptions
-          src="/src/images/rent-icon.png"
-          alt="Rent icon"
-          resource="Rent"
-          type="delete"
-        />
-        <ResourceOptions
-          src="/src/images/rent-reception-icon.png"
-          alt="Rent reception Icon"
-          resource="RentReception"
-          type="delete"
-        />
       </div>
     </main>
   );

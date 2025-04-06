@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import AddResource from "./pages/AddResource";
-import DeleteResource from "./pages/DeleteResource";
-import UpdateResource from "./pages/UpdateResource";
 import GetResource from "./pages/GetResource";
+import UpdateResource from "./pages/UpdateResource";
+import DeleteResource from "./pages/DeleteResource";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Header from "./components/Header";
@@ -13,9 +13,9 @@ import Footer from "./components/Footer";
 export default function App() {
   const homeRoute = "/";
   const addRoute = "/add";
-  const deleteRoute = "/delete";
-  const updateRoute = "/update";
   const getRoute = "/get";
+  const updateRoute = "/update";
+  const deleteRoute = "/delete";
   const aboutRoute = "/about";
   const contactRoute = "/contact";
 
@@ -26,9 +26,9 @@ export default function App() {
           <ul>
             <NavBar path={homeRoute} text="Home" />
             <NavBar path={addRoute} text="Add Resource" />
-            <NavBar path={deleteRoute} text="Delete Resource" />
-            <NavBar path={updateRoute} text="Update Resource" />
             <NavBar path={getRoute} text="Get Resource" />
+            <NavBar path={updateRoute} text="Update Resource" />
+            <NavBar path={deleteRoute} text="Delete Resource" />
             <NavBar path={aboutRoute} text="About" />
             <NavBar path={contactRoute} text="Contact" />
           </ul>
@@ -41,9 +41,9 @@ export default function App() {
         <Routes>
           <Route path={homeRoute} element={<Home />} />
           <Route path={addRoute} element={<AddResource />} />
-          <Route path={deleteRoute} element={<DeleteResource />} />
-          <Route path={updateRoute} element={<UpdateResource />} />
           <Route path={getRoute} element={<GetResource />} />
+          <Route path={updateRoute} element={<UpdateResource />} />
+          <Route path={deleteRoute} element={<DeleteResource />} />
           <Route path={aboutRoute} element={<About />} />
           <Route path={contactRoute} element={<Contact />} />
         </Routes>

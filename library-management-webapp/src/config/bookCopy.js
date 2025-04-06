@@ -10,5 +10,11 @@ export default {
         { id: 3, name: "Title", label: "Title (Optional): ", type: "text",  placeholder: "Enter book title", required: false  },
         { id: 4, name: "Condition", label: "Condition (Optional): ", type: "radio",  options: ["As new", "Good", "Used", "Bad"], required: false },
         { id: 5, info: "Note: All fields are optional. Leave them blank to get everything.", type: "info"}
+    ],
+    update: [
+        { id: 1, name: "Id", label: "Book Copy ID: ",  type: "number", placeholder: 1, min: 1, required: true }
+    ],
+    delete: [
+        { id: 1, name: "Id", label: "Book Copy ID: ",  type: "number", placeholder: 1, min: 1, required: true }
     ]
 }

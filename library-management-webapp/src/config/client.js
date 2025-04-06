@@ -19,5 +19,11 @@ export default {
         { id: 2, name: "name", label: "Name (Optional): ", type: "text", placeholder: "e.g. John Doe", pattern: "^[\\p{L}.\\-\\s]+$", maxLength: 30, title: "The client name can't have digits or special characters",  required: false },
         { id: 3, name: "NIF", label: "NIF (Optional): ", type: "text", placeholder: "e.g. 123456789",  pattern: "\\d{9}", title: "The client NIF must have exactly 9 digits", required: false  },
         { id: 4, info: "Note: All fields are optional. Leave them blank to get everything.", type: "info"}
+    ],
+    update: [
+        { id: 1, name: "id", label: "Client ID: ",  type: "number", placeholder: 1, min: 1, required: true }
+    ],
+    delete: [
+        { id: 1, name: "id", label: "Client ID: ",  type: "number", placeholder: 1, min: 1, required: true }
     ]
 }

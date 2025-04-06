@@ -17,5 +17,11 @@ export default {
         { id: 5, name: "Author", label: "Author (Optional): ", type: "text", placeholder: "e.g. John Doe", pattern: "^[\\p{L}.\\-\\s]+$", maxLength: 30, title: "The author name can't have digits or special characters", required: false },
         { id: 6, name: "Category", label: "Category (Optional): ", type: "text", placeholder: "e.g. Fantasy", pattern: "^[\\p{L}\\s]+$", maxLength: 30, title: "The category name can't have digits or special characters", required: false },
         { id: 7, info: "Note: All fields are optional. Leave them blank to get everything.", type: "info"}
+    ],
+    update: [
+        { id: 1, name: "SerialNumber", label: "Serial Number: ", type: "text", placeholder: "e.g. 1234567890123", pattern: "\\d{13}", title: "The serial number must have exactly 13 digits",  required: true }
+    ],
+    delete: [
+        { id: 1, name: "SerialNumber", label: "Serial Number: ", type: "text", placeholder: "e.g. 1234567890123", pattern: "\\d{13}", title: "The serial number must have exactly 13 digits",  required: true }
     ]
 }
