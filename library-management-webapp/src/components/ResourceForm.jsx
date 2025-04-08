@@ -11,6 +11,7 @@ import TextAreaField from "./InputTextAreaField";
 import RadioField from "./InputRadioField";
 import ArrayField from "./InputArrayField";
 import InputField from "./InputField";
+import api from "../api/api";
 
 export default function ResourceForm(props) {
   const resourceConfigs = {
@@ -24,6 +25,7 @@ export default function ResourceForm(props) {
     RentReception,
   };
 
+  // Form input states -----------------------------------------------------------------------//
   // fields that will be used corresponding to the recource name and type
   const fields = resourceConfigs[props.resource][props.type];
 
@@ -92,8 +94,17 @@ export default function ResourceForm(props) {
     );
   }
 
+  // "Data treatment" after submitting to API-----------------------------------------------------------------------//
+  function handleSubmit(event) {
+    event.preventDefault(); //page reloads by default, so it is prevented
+    const formEl = event.currentTarget;
+    const formData = new FormData(formEl); //create set of form data element
+    console.log(formData);
+    formEl.reset(); // erases info on form after submission
+  }
+
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleSubmit}>
       {fields.map(renderField)}
       <button className="submit-button">Submit</button>
     </form>

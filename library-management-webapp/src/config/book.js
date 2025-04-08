@@ -5,8 +5,8 @@ export default {
         { id: 3, name: "year", label: "Book Year: ", type: "number", placeholder: new Date().getFullYear(), min: 1800, max: new Date().getFullYear(), required: true  },
         { id: 4, name: "finePerDay", label: "Fine per day (€): ", type: "number", placeholder: 0.01, min: 0.01, step: 0.01, required: true },
         { id: 5, name: "publisherName", label: "Publisher name: ", type: "text", placeholder: "Enter publisher name", pattern: "^[\\p{L}.\\-\\s]+$", maxLength: 30, title: "The publisher name can't have digits or special characters", required: true },
-        { id: 6, name: "authors", label: "Author names: ", type: "array", itemType: "text", placeholder: "e.g. John Doe", pattern: "^[\\p{L}.\\-\\s]+$", maxLength: 30, title: "The author name can't have digits or special characters", required: true },
-        { id: 7, name: "categories", label: "Category names: ", type: "array",  itemType: "text", placeholder: "e.g. Fantasy", required: true },
+        { id: 6, name: "authors", subKey: "name", label: "Author names: ", type: "array", itemType: "text", placeholder: "e.g. John Doe", pattern: "^[\\p{L}.\\-\\s]+$", maxLength: 30, title: "The author name can't have digits or special characters", required: true },
+        { id: 7, name: "categories", subKey: "name", label: "Category names: ", type: "array",  itemType: "text", placeholder: "e.g. Fantasy", required: true },
         { id: 8, name: "totalAmount", label: "Total Amount: ", type: "number", placeholder: 1, min: 1, max: 100, required: true }
     ],
     get: [
