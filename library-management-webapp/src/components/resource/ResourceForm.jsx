@@ -11,6 +11,8 @@ import TextAreaField from "../inputs/InputTextAreaField";
 import RadioField from "../inputs/InputRadioField";
 import ArrayField from "../inputs/InputArrayField";
 import InputField from "../inputs/InputField";
+import { useArrayFields } from "../../hooks/useArrayFields";
+import { formatFormData } from "../../utils/formUtils";
 import api from "../../api/api";
 
 export default function ResourceForm(props) {
@@ -25,7 +27,7 @@ export default function ResourceForm(props) {
     RentReception,
   };
 
-  // Form input states -----------------------------------------------------------------------//
+  // Form input states//
   // fields that will be used corresponding to the recource name and type
   const fields = resourceConfigs[props.resource][props.type];
 
@@ -37,27 +39,14 @@ export default function ResourceForm(props) {
       return acc;
     }, {});
 
-  // state to change arrayFields such as authors and categories in books
-  const [arrayFields, setArrayFields] = React.useState(defaultArrayFields);
-
-  function handleArrayFieldChange(fieldName, index, e) {
-    const newArrayFields = { ...arrayFields };
-    newArrayFields[fieldName][index] = [e.target.value];
-    setArrayFields(newArrayFields);
-  }
-
-  function addArrayField(fieldName) {
-    setArrayFields((prevArray) => ({
-      ...prevArray,
-      [fieldName]: [...arrayFields[fieldName], ""],
-    }));
-  }
-
-  function removeArrayField(fieldName, index) {
-    const newArrayFields = { ...arrayFields };
-    newArrayFields[fieldName].splice(index, 1);
-    setArrayFields(newArrayFields);
-  }
+  // state and functions for Array fields
+  const {
+    arrayFields,
+    handleArrayFieldChange,
+    addArrayField,
+    removeArrayField,
+    clearArrayFields,
+  } = useArrayFields(defaultArrayFields);
 
   // Function to select the right field type
   function selectFieldOptions(field) {
@@ -99,38 +88,11 @@ export default function ResourceForm(props) {
     event.preventDefault(); //page reloads by default, so it is prevented
     const formEl = event.currentTarget;
     const formData = new FormData(formEl); //create set of form data element
+
     formEl.reset(); // erases info on form after submission
+    clearArrayFields(); //function from useArrayFields to clear info
 
-    // clears info on array fields, while leaving the previous number of visible fields
-    /// converts the values in the object to "". As it's empty, placeholder appears!
-    const clearedArrayFields = {};
-
-    for (const key in arrayFields) {
-      clearedArrayFields[key] = arrayFields[key].map(() => "");
-    }
-    setArrayFields(clearedArrayFields);
-
-    // Adds each formData object in data, but if key already exists it transforms data in array, if there's already an array it adds the new value (for cases as book authors and categories)
-    const data = {};
-
-    formData.forEach((value, key) => {
-      if (data[key]) {
-        if (Array.isArray(data[key])) {
-          data[key].push(value);
-        } else {
-          data[key] = [data[key], value];
-        }
-      } else {
-        data[key] = value;
-      }
-    });
-
-    // formats where fields is array so it's compatible with API format and has subkey
-    for (const key in data) {
-      if (Array.isArray(data[key])) {
-        data[key] = data[key].map((item) => ({ name: item }));
-      }
-    }
+    const data = formatFormData(formData); //formats data in case of fields with array, to follow POST documentation of API
     console.log(data);
   }
 
