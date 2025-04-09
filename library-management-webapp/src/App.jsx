@@ -6,9 +6,9 @@ import UpdateResource from "./pages/UpdateResource";
 import DeleteResource from "./pages/DeleteResource";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Header from "./components/Header";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import Header from "./components/layout/Header";
+import NavBar from "./components/layout/NavBar";
+import Footer from "./components/layout/Footer";
 
 export default function App() {
   const homeRoute = "/";

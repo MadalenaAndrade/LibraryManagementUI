@@ -1,4 +1,4 @@
-import ResourceButton from "../components/ResourceButton";
+import ResourceButton from "../components/resource/ResourceButton";
 
 export default function Home() {
   return (

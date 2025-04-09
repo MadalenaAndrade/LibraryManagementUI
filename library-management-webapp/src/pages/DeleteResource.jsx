@@ -1,4 +1,4 @@
-import ResourceOptions from "../components/ResourceOptions";
+import ResourceOptions from "../components/resource/ResourceOptions";
 
 export default function DeleteResource() {
   return (

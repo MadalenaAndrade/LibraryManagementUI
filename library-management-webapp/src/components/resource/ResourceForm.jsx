@@ -1,17 +1,17 @@
 import React from "react";
-import Author from "../config/author";
-import Book from "../config/book";
-import BookCopy from "../config/bookCopy";
-import Category from "../config/category";
-import Client from "../config/client";
-import Publisher from "../config/publisher";
-import Rent from "../config/rent";
-import RentReception from "../config/rentReception";
-import TextAreaField from "./InputTextAreaField";
-import RadioField from "./InputRadioField";
-import ArrayField from "./InputArrayField";
-import InputField from "./InputField";
-import api from "../api/api";
+import Author from "../../config/author";
+import Book from "../../config/book";
+import BookCopy from "../../config/bookCopy";
+import Category from "../../config/category";
+import Client from "../../config/client";
+import Publisher from "../../config/publisher";
+import Rent from "../../config/rent";
+import RentReception from "../../config/rentReception";
+import TextAreaField from "../inputs/InputTextAreaField";
+import RadioField from "../inputs/InputRadioField";
+import ArrayField from "../inputs/InputArrayField";
+import InputField from "../inputs/InputField";
+import api from "../../api/api";
 
 export default function ResourceForm(props) {
   const resourceConfigs = {
@@ -94,13 +94,44 @@ export default function ResourceForm(props) {
     );
   }
 
-  // "Data treatment" after submitting to API-----------------------------------------------------------------------//
+  // "Data treatment" for API-----------------------------------------------------------------------//
   function handleSubmit(event) {
     event.preventDefault(); //page reloads by default, so it is prevented
     const formEl = event.currentTarget;
     const formData = new FormData(formEl); //create set of form data element
-    console.log(formData);
     formEl.reset(); // erases info on form after submission
+
+    // clears info on array fields, while leaving the previous number of visible fields
+    /// converts the values in the object to "". As it's empty, placeholder appears!
+    const clearedArrayFields = {};
+
+    for (const key in arrayFields) {
+      clearedArrayFields[key] = arrayFields[key].map(() => "");
+    }
+    setArrayFields(clearedArrayFields);
+
+    // Adds each formData object in data, but if key already exists it transforms data in array, if there's already an array it adds the new value (for cases as book authors and categories)
+    const data = {};
+
+    formData.forEach((value, key) => {
+      if (data[key]) {
+        if (Array.isArray(data[key])) {
+          data[key].push(value);
+        } else {
+          data[key] = [data[key], value];
+        }
+      } else {
+        data[key] = value;
+      }
+    });
+
+    // formats where fields is array so it's compatible with API format and has subkey
+    for (const key in data) {
+      if (Array.isArray(data[key])) {
+        data[key] = data[key].map((item) => ({ name: item }));
+      }
+    }
+    console.log(data);
   }
 
   return (
