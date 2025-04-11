@@ -13,7 +13,7 @@ import ArrayField from "../inputs/InputArrayField";
 import InputField from "../inputs/InputField";
 import { useArrayFields } from "../../hooks/useArrayFields";
 import { formatFormData } from "../../utils/formUtils";
-import api from "../../api/api";
+import { usePostResource } from "../../hooks/useAddResource";
 
 export default function ResourceForm(props) {
   const resourceConfigs = {
@@ -39,7 +39,7 @@ export default function ResourceForm(props) {
       return acc;
     }, {});
 
-  // state and functions for Array fields
+  // import state and functions for Array fields (check how to custom hooks on React doc :)!)
   const {
     arrayFields,
     handleArrayFieldChange,
@@ -83,7 +83,7 @@ export default function ResourceForm(props) {
     );
   }
 
-  // "Data treatment" for API-----------------------------------------------------------------------//
+  // "Data treatment" for API//
   function handleSubmit(event) {
     event.preventDefault(); //page reloads by default, so it is prevented
     const formEl = event.currentTarget;
@@ -92,8 +92,15 @@ export default function ResourceForm(props) {
     formEl.reset(); // erases info on form after submission
     clearArrayFields(); //function from useArrayFields to clear info
 
-    const data = formatFormData(formData); //formats data in case of fields with array, to follow POST documentation of API
+    const data = formatFormData(formData); //function to format data in case of fields with array, to follow my POST documentation of Library API
     console.log(data);
+
+    // Api requests
+    const { postData } = usePostResource(props.resource);
+
+    if (props.type === "add") {
+      postData(data);
+    }
   }
 
   return (
