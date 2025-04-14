@@ -92,7 +92,7 @@ export default function ResourceForm(props) {
     formEl.reset(); // erases info on form after submission
     clearArrayFields(); //function from useArrayFields to clear info
 
-    const data = formatFormData(formData); //function to format data in case of fields with array, to follow my POST documentation of Library API
+    const data = formatFormData(formData, fields); //function to format data in case of fields with array, to follow my POST documentation of Library API
     console.log(data);
 
     // Api requests

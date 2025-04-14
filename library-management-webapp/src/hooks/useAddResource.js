@@ -15,7 +15,11 @@ export function usePostResource(resource) {
             }
         }) 
         //TODO: catch api bad requests errors and shows on UI
-        .catch((errors) => console.error(errors));
+        .catch((error) => {if (error.response && error.response.data && error.response.data.errors) {
+            console.error("Validation Errors:", error.response.data.errors);
+          } else {
+            console.error("Unknown error occurred:", error.message);
+          }});
     }
 
     return { postData }
