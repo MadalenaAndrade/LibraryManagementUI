@@ -209,7 +209,15 @@ textarea {
   font-size: 17px;
 }
 
+.success-message {
+  color: rgb(18, 90, 30);
+  font-weight: bold;
+}
 
+.error-message {
+  color: rgb(165, 31, 31);
+  font-weight: bold;
+}
 
 
 /* for small windows so that content isn't behind navbar */

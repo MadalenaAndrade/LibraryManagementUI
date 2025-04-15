@@ -27,6 +27,11 @@ export default function ResourceForm(props) {
     RentReception,
   };
 
+  // Hooks for API requests
+  const [successMessage, setSuccessMessage] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const { postData } = usePostResource(props.resource);
+
   // Form input states//
   // fields that will be used corresponding to the recource name and type
   const fields = resourceConfigs[props.resource][props.type];
@@ -84,7 +89,7 @@ export default function ResourceForm(props) {
   }
 
   // "Data treatment" for API//
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault(); //page reloads by default, so it is prevented
     const formEl = event.currentTarget;
     const formData = new FormData(formEl); //create set of form data element
@@ -96,16 +101,24 @@ export default function ResourceForm(props) {
     console.log(data);
 
     // Api requests
-    const { postData } = usePostResource(props.resource);
+    try {
+      setSuccessMessage("");
+      setErrorMessage("");
 
-    if (props.type === "add") {
-      postData(data);
+      if (props.type === "add") {
+        const message = await postData(data);
+        setSuccessMessage(message);
+      }
+    } catch (error) {
+      setErrorMessage(error.message || "Unknown error");
     }
   }
 
   return (
     <form className="form" onSubmit={handleSubmit}>
       {fields.map(renderField)}
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <button className="submit-button">Submit</button>
     </form>
   );
