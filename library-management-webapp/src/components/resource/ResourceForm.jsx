@@ -71,8 +71,8 @@ export default function ResourceForm(props) {
 
   function renderField(field) {
     return field.type === "radio" ? (
-      <fieldset>
-        <legend key={field.id}>{field.label}</legend>
+      <fieldset key={field.id}>
+        <legend>{field.label}</legend>
         <RadioField field={field} />
       </fieldset>
     ) : (

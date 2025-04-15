@@ -17,18 +17,36 @@ export function formatFormData(formData, fields) {
   });
 
   // formats where fields is array so it's compatible with API format and has subkey "name"
-  const arrayFields = fields.filter(field => field.type === "array").map(field => field.name) // extract names from array fields
+  const arrayFields = fields
+    .filter((field) => field.type === "array")
+    .map((field) => field.name); // extract names from array fields
 
   arrayFields.forEach((field) => {
     if (data[field]) {
       if (!Array.isArray(data[field])) {
-        data[field] = [data[field]]
+        data[field] = [data[field]];
       }
-      data[field] = data[field].map((item) => ( { name: item}))
+      data[field] = data[field].map((value) => ({ name: value }));
     }
   });
-  
-  // convert to the correct data type (numerics)
+
+  // covert date type to correct format received by API
+  const dateFields = fields
+    .filter((field) => field.type === "date")
+    .map((field) => field.name);
+
+  dateFields.forEach((field) => {
+    if (data[field]) {
+      const [year, month, day] = data[field].split("-");
+      if (year && month && day) {
+        data[field] = `${day}-${month}-${year}`;
+      }
+    } else {
+      data[field] = null
+    }
+  });
+
+  // convert to the correct data type (numerics) or null when not required
   if (data.serialNumber) data.serialNumber = parseInt(data.serialNumber);
   if (data.year) data.year = parseInt(data.year);
   if (data.totalAmount) data.totalAmount = parseInt(data.totalAmount);
@@ -36,9 +54,20 @@ export function formatFormData(formData, fields) {
   if (data.nif) data.nif = parseInt(data.nif);
   if (data.contact) data.contact = parseInt(data.contact);
   if (data.clientId) data.clientId = parseInt(data.clientId);
-  if (data.bookSerialNumber) data.bookSerialNumber = parseInt(data.bookSerialNumber);
-  if (data.bookCopyId) data.bookCopyId = parseInt(data.bookCopyId);
   if (data.rentId) data.rentId = parseInt(data.rentId);
+
+  if (data.bookSerialNumber !== "") {
+    data.bookSerialNumber = parseInt(data.bookSerialNumber);
+  } else {
+    data.bookSerialNumber = null;
+  }
+
+  if (data.bookCopyId !== "") {
+    data.bookCopyId = parseInt(data.bookCopyId);
+  } else {
+    data.bookCopyId = null;
+  }
+
 
   return data;
 }
