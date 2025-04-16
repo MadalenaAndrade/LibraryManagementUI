@@ -31,6 +31,7 @@ export default function ResourceForm(props) {
   const [successMessage, setSuccessMessage] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const { postData } = usePostResource(props.resource);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   // Form input states//
   // fields that will be used corresponding to the recource name and type
@@ -92,6 +93,9 @@ export default function ResourceForm(props) {
   async function handleSubmit(event) {
     event.preventDefault(); //page reloads by default, so it is prevented
     const formEl = event.currentTarget;
+
+    setIsLoading(true);
+
     const formData = new FormData(formEl); //create set of form data element
 
     formEl.reset(); // erases info on form after submission
@@ -104,6 +108,7 @@ export default function ResourceForm(props) {
     try {
       setSuccessMessage("");
       setErrorMessage("");
+      await new Promise((resolve) => setTimeout(resolve, 1000)); //Minimum 1s delay to ensure spinner is visible and avoid abrupt user experience.
 
       if (props.type === "add") {
         const message = await postData(data);
@@ -111,6 +116,8 @@ export default function ResourceForm(props) {
       }
     } catch (error) {
       setErrorMessage(error.message || "Unknown error");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -119,7 +126,15 @@ export default function ResourceForm(props) {
       {fields.map(renderField)}
       {successMessage && <p className="success-message">{successMessage}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <button className="submit-button">Submit</button>
+      <button className="submit-button">
+        {isLoading ? (
+          <>
+            <span className="spinner" /> Working on it...
+          </>
+        ) : (
+          "Submit"
+        )}
+      </button>
     </form>
   );
 }
