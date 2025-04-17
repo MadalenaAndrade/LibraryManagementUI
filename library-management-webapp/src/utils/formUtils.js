@@ -1,9 +1,7 @@
-//TODO: right now is not being considered if user has only inputed one field for array type. Check later!
-
 export function formatFormData(formData, fields) {
-  // Adds each formData object in data, but if key already exists it transforms data in array, if there's already an array it adds the new value (for cases as book authors and categories)
   const data = {};
 
+  // Adds each formData object in data, but if key already exists it transforms data in array, if there's already an array it adds the new value (for cases as book authors and categories)
   formData.forEach((value, key) => {
     if (data[key]) {
       if (Array.isArray(data[key])) {
@@ -47,25 +45,25 @@ export function formatFormData(formData, fields) {
   });
 
   // convert to the correct data type (numerics) or null when not required
-  if (data.serialNumber) data.serialNumber = parseInt(data.serialNumber);
-  if (data.year) data.year = parseInt(data.year);
-  if (data.totalAmount) data.totalAmount = parseInt(data.totalAmount);
-  if (data.finePerDay) data.finePerDay = parseFloat(data.finePerDay);
-  if (data.nif) data.nif = parseInt(data.nif);
-  if (data.contact) data.contact = parseInt(data.contact);
-  if (data.clientId) data.clientId = parseInt(data.clientId);
-  if (data.rentId) data.rentId = parseInt(data.rentId);
+  const fieldNames = fields.map(f => f.name);
+  
+  if (fieldNames.includes("serialNumber")) data.serialNumber = parseInt(data.serialNumber);
+  if (fieldNames.includes("year")) data.year = parseInt(data.year);
+  if (fieldNames.includes("totalAmount")) data.totalAmount = parseInt(data.totalAmount);
+  if (fieldNames.includes("finePerDay")) data.finePerDay = parseFloat(data.finePerDay);
+  if (fieldNames.includes("nif")) data.nif = parseInt(data.nif);
+  if (fieldNames.includes("contact")) data.contact = parseInt(data.contact);
+  if (fieldNames.includes("clientId")) data.clientId = parseInt(data.clientId);
+  if (fieldNames.includes("rentId")) data.rentId = parseInt(data.rentId);
 
-  if (data.bookSerialNumber !== "") {
-    data.bookSerialNumber = parseInt(data.bookSerialNumber);
-  } else {
-    data.bookSerialNumber = null;
+  if (fieldNames.includes("bookSerialNumber")) {
+    data.bookSerialNumber =
+      data.bookSerialNumber !== "" ? parseInt(data.bookSerialNumber) : null;
   }
 
-  if (data.bookCopyId !== "") {
-    data.bookCopyId = parseInt(data.bookCopyId);
-  } else {
-    data.bookCopyId = null;
+  if (fieldNames.includes("bookCopyId")) {
+    data.bookCopyId =
+      data.bookCopyId !== "" ? parseInt(data.bookCopyId) : null;
   }
 
 

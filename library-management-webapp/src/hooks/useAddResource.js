@@ -37,6 +37,7 @@ export function usePostResource(resource) {
 
               const allMessages = Object.values(errorsObject)
                 .flat()
+                .filter((msg, index, self) => self.indexOf(msg) === index) // Remove duplicates, keep first occurrence only
                 .join("\n");
               
                 errorMessage = `Error:\n${allMessages}`;

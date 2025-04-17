@@ -1,5 +1,3 @@
-//ToDo: Add formError if both serialNumber & bookCopy are not filled (one is okey)
-
 export default {
     add: [
         { id: 1, name: "clientId", label: "Client Id: ", type: "number", placeholder: 1, min: 1, required: true  },
