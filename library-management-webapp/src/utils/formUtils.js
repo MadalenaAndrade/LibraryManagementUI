@@ -15,11 +15,11 @@ export function formatFormData(formData, fields) {
   });
 
   // formats where fields is array so it's compatible with API format and has subkey "name"
-  const arrayFields = fields
+  const arrayFieldNames = fields
     .filter((field) => field.type === "array")
     .map((field) => field.name); // extract names from array fields
 
-  arrayFields.forEach((field) => {
+  arrayFieldNames.forEach((field) => {
     if (data[field]) {
       if (!Array.isArray(data[field])) {
         data[field] = [data[field]];
@@ -45,23 +45,23 @@ export function formatFormData(formData, fields) {
   });
 
   // convert to the correct data type (numerics) or null when not required
-  const fieldNames = fields.map(f => f.name);
+  const allFieldNames = fields.map(f => f.name);
   
-  if (fieldNames.includes("serialNumber")) data.serialNumber = parseInt(data.serialNumber);
-  if (fieldNames.includes("year")) data.year = parseInt(data.year);
-  if (fieldNames.includes("totalAmount")) data.totalAmount = parseInt(data.totalAmount);
-  if (fieldNames.includes("finePerDay")) data.finePerDay = parseFloat(data.finePerDay);
-  if (fieldNames.includes("nif")) data.nif = parseInt(data.nif);
-  if (fieldNames.includes("contact")) data.contact = parseInt(data.contact);
-  if (fieldNames.includes("clientId")) data.clientId = parseInt(data.clientId);
-  if (fieldNames.includes("rentId")) data.rentId = parseInt(data.rentId);
+  if (allFieldNames.includes("serialNumber")) data.serialNumber = parseInt(data.serialNumber);
+  if (allFieldNames.includes("year")) data.year = parseInt(data.year);
+  if (allFieldNames.includes("totalAmount")) data.totalAmount = parseInt(data.totalAmount);
+  if (allFieldNames.includes("finePerDay")) data.finePerDay = parseFloat(data.finePerDay);
+  if (allFieldNames.includes("nif")) data.nif = parseInt(data.nif);
+  if (allFieldNames.includes("contact")) data.contact = parseInt(data.contact);
+  if (allFieldNames.includes("clientId")) data.clientId = parseInt(data.clientId);
+  if (allFieldNames.includes("rentId")) data.rentId = parseInt(data.rentId); 
 
-  if (fieldNames.includes("bookSerialNumber")) {
+  if (allFieldNames.includes("bookSerialNumber")) {
     data.bookSerialNumber =
       data.bookSerialNumber !== "" ? parseInt(data.bookSerialNumber) : null;
   }
 
-  if (fieldNames.includes("bookCopyId")) {
+  if (allFieldNames.includes("bookCopyId")) {
     data.bookCopyId =
       data.bookCopyId !== "" ? parseInt(data.bookCopyId) : null;
   }

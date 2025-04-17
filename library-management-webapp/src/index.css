@@ -235,6 +235,10 @@ textarea {
   100% { transform: rotate(360deg); }
 }
 
+.results-title {
+  color:#487fd8
+}
+
 
 /* for small windows so that content isn't behind navbar */
 @media (max-width: 768px) {

@@ -1,12 +1,12 @@
 import React from "react";
-import Author from "../../config/author";
-import Book from "../../config/book";
-import BookCopy from "../../config/bookCopy";
-import Category from "../../config/category";
-import Client from "../../config/client";
-import Publisher from "../../config/publisher";
-import Rent from "../../config/rent";
-import RentReception from "../../config/rentReception";
+import Author from "../../config/resources/author";
+import Book from "../../config/resources/book";
+import BookCopy from "../../config/resources/bookCopy";
+import Category from "../../config/resources/category";
+import Client from "../../config/resources/client";
+import Publisher from "../../config/resources/publisher";
+import Rent from "../../config/resources/rent";
+import RentReception from "../../config/resources/rentReception";
 import TextAreaField from "../inputs/InputTextAreaField";
 import RadioField from "../inputs/InputRadioField";
 import ArrayField from "../inputs/InputArrayField";
@@ -14,6 +14,7 @@ import InputField from "../inputs/InputField";
 import { useArrayFields } from "../../hooks/useArrayFields";
 import { formatFormData } from "../../utils/formUtils";
 import { usePostResource } from "../../hooks/useAddResource";
+import { useGetResource } from "../../hooks/useGetResourse";
 
 export default function ResourceForm(props) {
   const resourceConfigs = {
@@ -31,6 +32,8 @@ export default function ResourceForm(props) {
   const [successMessage, setSuccessMessage] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const { postData } = usePostResource(props.resource);
+  const { getData } = useGetResource(props.resource);
+  const [retrievedData, setRetrievedData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
 
   // Form input states//
@@ -102,7 +105,12 @@ export default function ResourceForm(props) {
     clearArrayFields(); //function from useArrayFields to clear info
 
     const data = formatFormData(formData, fields); //function to format data in case of fields with array, to follow my POST documentation of Library API
-    console.log(data);
+    console.log(`raw object: ${JSON.stringify(data)}`);
+
+    const cleanedValues = Object.fromEntries(
+      Object.entries(data).filter(([, value]) => value !== "" && value != null)
+    );
+    console.log(`Cleaned object: ${JSON.stringify(cleanedValues)}`);
 
     // Api requests
     try {
@@ -114,6 +122,11 @@ export default function ResourceForm(props) {
         const message = await postData(data);
         setSuccessMessage(message);
       }
+      if (props.type === "get") {
+        const result = await getData(data);
+        console.log(result);
+        setRetrievedData(result);
+      }
     } catch (error) {
       setErrorMessage(error.message || "Unknown error");
     } finally {
@@ -122,19 +135,27 @@ export default function ResourceForm(props) {
   }
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      {fields.map(renderField)}
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <button className="submit-button">
-        {isLoading ? (
-          <>
-            <span className="spinner" /> Working on it...
-          </>
-        ) : (
-          "Submit"
-        )}
-      </button>
-    </form>
+    <>
+      <form className="form" onSubmit={handleSubmit}>
+        {fields.map(renderField)}
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <button className="submit-button">
+          {isLoading ? (
+            <>
+              <span className="spinner" /> Working on it...
+            </>
+          ) : (
+            "Submit"
+          )}
+        </button>
+      </form>
+      {/* ToDo add retrived data on UI and consider pagination*/}
+      {props.type === "get" && retrievedData && (
+        <div className="retrieved-data">
+          <h2 className="results-title">Results obtained:</h2>
+        </div>
+      )}
+    </>
   );
 }
