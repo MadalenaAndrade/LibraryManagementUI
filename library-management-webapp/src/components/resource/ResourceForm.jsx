@@ -133,6 +133,7 @@ export default function ResourceForm(props) {
       }
     } catch (error) {
       setErrorMessage(error.message || "Unknown error");
+      setRetrievedData(null);
     } finally {
       setIsLoading(false);
     }
@@ -142,8 +143,6 @@ export default function ResourceForm(props) {
     <>
       <form className="form" onSubmit={handleSubmit}>
         {fields.map(renderField)}
-        {successMessage && <p className="success-message">{successMessage}</p>}
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button className="submit-button">
           {isLoading ? (
             <>
@@ -155,22 +154,30 @@ export default function ResourceForm(props) {
         </button>
       </form>
       {/* ToDo add retrived data on UI and consider pagination*/}
-      {props.type === "get" && retrievedData && (
-        <div className="retrieved-data">
-          {errorMessage ? null : (
-            <h2 className="results-title">Results obtained:</h2>
-          )}
-          {retrievedData.map((item, index) => (
-            <ul key={index}>
-              {Object.entries(item).map(([label, value]) => (
-                <li key={label}>
-                  <strong>{label}:</strong> {value}
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-      )}
+      <div className="submit-information">
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {props.type === "get" && retrievedData && (
+          <div className="retrieved-data">
+            {retrievedData.length === 0 ? (
+              <p className="error-message">{props.resource} not found</p>
+            ) : (
+              <>
+                <h2 className="results-title">Results obtained:</h2>
+                {retrievedData.map((item, index) => (
+                  <ul key={index}>
+                    {Object.entries(item).map(([label, value]) => (
+                      <li key={label}>
+                        <strong>{label}:</strong> {value}
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </>
+            )}
+          </div>
+        )}
+      </div>
     </>
   );
 }

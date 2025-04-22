@@ -217,6 +217,7 @@ textarea {
 .error-message {
   color: rgb(165, 31, 31);
   font-weight: bold;
+  text-align: center;
 }
 
 .spinner {
@@ -235,14 +236,18 @@ textarea {
   100% { transform: rotate(360deg); }
 }
 
-.retrieved-data {
-  color: black;
-  text-align: left;
+.submit-information {
   max-width: 200px;
 }
 
+.retrieved-data {
+  color: black;
+  text-align: left;
+}
+
 .results-title {
-  color:#487fd8
+  color:#487fd8;
+  font-size: large;
 }
 
 .retrieved-data > ul {
