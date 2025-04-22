@@ -235,9 +235,25 @@ textarea {
   100% { transform: rotate(360deg); }
 }
 
+.retrieved-data {
+  color: black;
+  text-align: left;
+  max-width: 200px;
+}
+
 .results-title {
   color:#487fd8
 }
+
+.retrieved-data > ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 7px;
+  margin-top: 0;
+  border-bottom: dotted #487fd8; 
+}
+
+
 
 
 /* for small windows so that content isn't behind navbar */

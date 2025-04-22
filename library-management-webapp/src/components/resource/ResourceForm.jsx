@@ -12,9 +12,10 @@ import RadioField from "../inputs/InputRadioField";
 import ArrayField from "../inputs/InputArrayField";
 import InputField from "../inputs/InputField";
 import { useArrayFields } from "../../hooks/useArrayFields";
-import { formatFormData } from "../../utils/formUtils";
+import { formatFormData } from "../../utils/formDataUtils";
 import { usePostResource } from "../../hooks/useAddResource";
 import { useGetResource } from "../../hooks/useGetResourse";
+import { formatRetrievedData } from "../../utils/retrievedDataUtils";
 
 export default function ResourceForm(props) {
   const resourceConfigs = {
@@ -105,12 +106,12 @@ export default function ResourceForm(props) {
     clearArrayFields(); //function from useArrayFields to clear info
 
     const data = formatFormData(formData, fields); //function to format data in case of fields with array, to follow my POST documentation of Library API
-    console.log(`raw object: ${JSON.stringify(data)}`);
+    //console.log(`raw object: ${JSON.stringify(data)}`);
 
     const cleanedValues = Object.fromEntries(
       Object.entries(data).filter(([, value]) => value !== "" && value != null)
     );
-    console.log(`Cleaned object: ${JSON.stringify(cleanedValues)}`);
+    //console.log(`Cleaned object: ${JSON.stringify(cleanedValues)}`);
 
     // Api requests
     try {
@@ -125,7 +126,10 @@ export default function ResourceForm(props) {
       if (props.type === "get") {
         const result = await getData(data);
         console.log(result);
-        setRetrievedData(result);
+
+        const formattedResult = formatRetrievedData(props.resource, result);
+        setRetrievedData(formattedResult.data);
+        console.log(formattedResult.data);
       }
     } catch (error) {
       setErrorMessage(error.message || "Unknown error");
@@ -153,7 +157,18 @@ export default function ResourceForm(props) {
       {/* ToDo add retrived data on UI and consider pagination*/}
       {props.type === "get" && retrievedData && (
         <div className="retrieved-data">
-          <h2 className="results-title">Results obtained:</h2>
+          {errorMessage ? null : (
+            <h2 className="results-title">Results obtained:</h2>
+          )}
+          {retrievedData.map((item, index) => (
+            <ul key={index}>
+              {Object.entries(item).map(([label, value]) => (
+                <li key={label}>
+                  <strong>{label}:</strong> {value}
+                </li>
+              ))}
+            </ul>
+          ))}
         </div>
       )}
     </>
