@@ -36,6 +36,9 @@ export default function ResourceForm(props) {
   const { getData } = useGetResource(props.resource);
   const [retrievedData, setRetrievedData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [paginationData, setPaginationData] = React.useState(null);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [lastQuery, setLastQuery] = React.useState(null);
 
   // Form input states//
   // fields that will be used corresponding to the recource name and type
@@ -106,12 +109,6 @@ export default function ResourceForm(props) {
     clearArrayFields(); //function from useArrayFields to clear info
 
     const data = formatFormData(formData, fields); //function to format data in case of fields with array, to follow my POST documentation of Library API
-    //console.log(`raw object: ${JSON.stringify(data)}`);
-
-    const cleanedValues = Object.fromEntries(
-      Object.entries(data).filter(([, value]) => value !== "" && value != null)
-    );
-    //console.log(`Cleaned object: ${JSON.stringify(cleanedValues)}`);
 
     // Api requests
     try {
@@ -124,18 +121,49 @@ export default function ResourceForm(props) {
         setSuccessMessage(message);
       }
       if (props.type === "get") {
-        const result = await getData(data);
-        console.log(result);
+        const result = await getData(data, 1);
 
         const formattedResult = formatRetrievedData(props.resource, result);
         setRetrievedData(formattedResult.data);
-        console.log(formattedResult.data);
+        setPaginationData(formattedResult.pagination);
+        setCurrentPage(1);
+        setLastQuery(data);
       }
     } catch (error) {
       setErrorMessage(error.message || "Unknown error");
       setRetrievedData(null);
     } finally {
       setIsLoading(false);
+    }
+  }
+
+  // setup the change of pages in GET requests
+  async function handlePageChange(newPage) {
+    setIsLoading(true);
+    try {
+      const result = await getData(lastQuery, newPage);
+      const formattedResult = formatRetrievedData(props.resource, result);
+
+      setRetrievedData(formattedResult.data);
+      setPaginationData(formattedResult.pagination);
+      setCurrentPage(newPage);
+    } catch (error) {
+      setErrorMessage(error.message || "Error on changing page");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  function handlePreviousClick() {
+    if (paginationData.currentPage > 1) {
+      handlePageChange(paginationData.currentPage - 1);
+    }
+  }
+
+  function handleNextClick() {
+    const totalPages = Math.ceil(paginationData.totalItems / 10);
+    if (paginationData.currentPage < totalPages) {
+      handlePageChange(paginationData.currentPage + 1);
     }
   }
 
@@ -153,7 +181,6 @@ export default function ResourceForm(props) {
           )}
         </button>
       </form>
-      {/* ToDo add retrived data on UI and consider pagination*/}
       <div className="submit-information">
         {successMessage && <p className="success-message">{successMessage}</p>}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -164,6 +191,16 @@ export default function ResourceForm(props) {
             ) : (
               <>
                 <h2 className="results-title">Results obtained:</h2>
+                {paginationData && paginationData.currentPage && (
+                  <div className="pagination-controls">
+                    <p>
+                      Page {paginationData.currentPage} of{" "}
+                      {Math.ceil(paginationData.totalItems / 10)}
+                    </p>
+                    <button onClick={handlePreviousClick}>Previous</button>
+                    <button onClick={handleNextClick}>Next</button>
+                  </div>
+                )}
                 {retrievedData.map((item, index) => (
                   <ul key={index}>
                     {Object.entries(item).map(([label, value]) => (

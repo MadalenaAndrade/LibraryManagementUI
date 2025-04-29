@@ -55,9 +55,8 @@ export function formatRetrievedData(resource, rawData) {
       }));
 
       pagination = {
-        totalBookCopies: rawData.totalBookCopies,
+        totalItems: rawData.totalBookCopies,
         currentPage: rawData.currentPage,
-        pageSize: rawData.pageSize,
       };
       break;
     case "Category":
@@ -95,9 +94,8 @@ export function formatRetrievedData(resource, rawData) {
       }));
 
       pagination = {
-        totalRents: rawData.totalRents,
+        totalItems: rawData.totalRents,
         currentPage: rawData.currentPage,
-        pageSize: rawData.pageSize,
       };
       break;
     case "RentReception":
@@ -109,9 +107,8 @@ export function formatRetrievedData(resource, rawData) {
       }));
 
       pagination = {
-        totalRentReceptions: rawData.totalRentReceptions,
+        totalItems: rawData.totalRentReceptions,
         currentPage: rawData.currentPage,
-        pageSize: rawData.pageSize,
       };
       break;
     default:

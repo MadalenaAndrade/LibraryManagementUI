@@ -2,7 +2,7 @@ import api from "../api/api";
 import resourceRules from "../config/getResourceRules";
 
 export function useGetResource(resource) {
-  function getData(formValues, page = 1) {
+  function getData(formValues, page) {
     // Some rules were defined per resource as Get requests difer with and within resource
     const rules = resourceRules[resource]; 
     let endpoint = "";
@@ -28,8 +28,7 @@ export function useGetResource(resource) {
       endpoint = rules.list
 
       if (rules.pagination) {
-        query.page = page;
-        query.pageSize = 10
+        query.pageNumber = page;
       }
     }
 
