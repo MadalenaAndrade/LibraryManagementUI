@@ -77,6 +77,8 @@ export default function ResourceForm(props) {
       return <TextAreaField field={field} />;
     } else if (field.type === "info") {
       return <p className="info-detail">{field.info}</p>;
+    } else if (field.type === "updateInfo") {
+      return <p className="update-info-detail">{field.info}</p>;
     } else {
       return <InputField field={field} />;
     }
@@ -108,8 +110,9 @@ export default function ResourceForm(props) {
     formEl.reset(); // erases info on form after submission
     clearArrayFields(); //function from useArrayFields to clear info
 
-    const data = formatFormData(formData, fields); //function to format data in case of fields with array, to follow my POST documentation of Library API
+    const data = formatFormData(formData, fields); //function to format data in case of fields with array, to follow my POST/PUT documentation of Library API
 
+    console.log(data);
     // Api requests
     try {
       setSuccessMessage("");
@@ -197,7 +200,7 @@ export default function ResourceForm(props) {
                       Page {paginationData.currentPage} of{" "}
                       {Math.ceil(paginationData.totalItems / 10)}
                     </p>
-                    <button onClick={handlePreviousClick}>Previous</button>
+                    <button onClick={handlePreviousClick}>Prev</button>
                     <button onClick={handleNextClick}>Next</button>
                   </div>
                 )}

@@ -19,8 +19,17 @@ export default {
         { id: 7, info: "Note: All fields are optional. Leave them blank to get everything.", type: "info"}
     ],
     update: [
-        { id: 1, name: "SerialNumber", label: "Serial Number: ", type: "text", placeholder: "e.g. 1234567890123", pattern: "\\d{13}", title: "The serial number must have exactly 13 digits",  required: true }
-    ],
+        { id: 1, info: "Resource to update:", type: "updateInfo"},
+        { id: 2, name: "serialNumber", label: "Serial Number: ", type: "text", placeholder: "e.g. 1234567890123", pattern: "\\d{13}", title: "The serial number must have exactly 13 digits",  required: true },
+        { id: 3, info: "Fields to update:", type: "updateInfo"},
+        { id: 4, name: "title", label: "Title(*): ", type: "text",  placeholder: "Enter book title", required: false },
+        { id: 5, name: "year", label: "Book Year(*): ", type: "number", placeholder: new Date().getFullYear(), min: 1900, max: new Date().getFullYear(), required: false },
+        { id: 6, name: "finePerDay", label: "Fine per day (€)(*): ", type: "number", placeholder: 0.01, min: 0.01, max: 10.00, step: 0.01, required: false },
+        { id: 7, name: "publisher", label: "Publisher(*): ", type: "text", placeholder: "Enter publisher name", pattern: "^[\\p{L}.\\-\\s]+$", maxLength: 30, title: "The publisher name can't have digits or special characters", required: false },
+        { id: 8, name: "authors", label: "Author names(*): ", type: "array", itemType: "text", placeholder: "e.g. John Doe", pattern: "^[\\p{L}.\\-\\s]+$", maxLength: 30, title: "The author name can't have digits or special characters", required: false },
+        { id: 9, name: "categories", label: "Category names(*): ", type: "array",  itemType: "text", placeholder: "e.g. Fantasy", required: false },
+        { id: 10, info: "*At least one field must be filled", type: "info"}
+    ],  
     delete: [
         { id: 1, name: "SerialNumber", label: "Serial Number: ", type: "text", placeholder: "e.g. 1234567890123", pattern: "\\d{13}", title: "The serial number must have exactly 13 digits",  required: true }
     ]
