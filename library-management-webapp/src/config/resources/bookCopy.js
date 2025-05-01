@@ -16,8 +16,8 @@ export default {
         { id: 2, name: "id", label: "Book Copy ID: ",  type: "number", placeholder: 1, min: 1, required: true },
         { id: 3, info: "Fields to update:", type: "updateInfo"},
         { id: 4, name: "newCondition", label: "Condition(*): ", type: "radio",  options: ["As new", "Good", "Used", "Bad"], required: false },
-        { id: 3, name: "newNotes", label: "Notes(*): ", type: "textArea", placeholder: "e.g. Slight creases on the front cover.", maxlength: "255", required: false },
-        { id: 10, info: "*At least one field must be filled", type: "info"}
+        { id: 5, name: "newNotes", label: "Notes(*): ", type: "textArea", placeholder: "e.g. Slight creases on the front cover.", maxlength: "255", required: false },
+        { id: 6, info: "*At least one field must be filled", type: "info"}
     ],
     delete: [
         { id: 1, name: "Id", label: "Book Copy ID: ",  type: "number", placeholder: 1, min: 1, required: true }

@@ -16,6 +16,7 @@ import { formatFormData } from "../../utils/formDataUtils";
 import { usePostResource } from "../../hooks/useAddResource";
 import { useGetResource } from "../../hooks/useGetResourse";
 import { formatRetrievedData } from "../../utils/retrievedDataUtils";
+import { useUpdateResource } from "../../hooks/useUpdateResource";
 
 export default function ResourceForm(props) {
   const resourceConfigs = {
@@ -34,6 +35,7 @@ export default function ResourceForm(props) {
   const [errorMessage, setErrorMessage] = React.useState("");
   const { postData } = usePostResource(props.resource);
   const { getData } = useGetResource(props.resource);
+  const { putData } = useUpdateResource(props.resource);
   const [retrievedData, setRetrievedData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [paginationData, setPaginationData] = React.useState(null);
@@ -112,7 +114,6 @@ export default function ResourceForm(props) {
 
     const data = formatFormData(formData, fields); //function to format data in case of fields with array, to follow my POST/PUT documentation of Library API
 
-    console.log(data);
     // Api requests
     try {
       setSuccessMessage("");
@@ -131,6 +132,10 @@ export default function ResourceForm(props) {
         setPaginationData(formattedResult.pagination);
         setCurrentPage(1);
         setLastQuery(data);
+      }
+      if (props.type === "update") {
+        const message = await putData(data);
+        setSuccessMessage(message);
       }
     } catch (error) {
       setErrorMessage(error.message || "Unknown error");

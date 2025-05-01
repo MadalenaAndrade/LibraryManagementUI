@@ -26,7 +26,7 @@ export default {
         { id: 3, info: "Fields to update:", type: "updateInfo"},
         { id: 4, name: "contact", label: "Contact(*): ", type: "text", placeholder: "e.g. 912345678", pattern: "\\d{9}", title: "The client contact must have exactly 9 digits", required: false },
         { id: 5, name: "address", label: "Address(*): ", type: "textArea", placeholder: "e.g. Street Example 123, Apt 4B, 12345 Fiction City", maxLength: 255, required: false },
-        { id: 10, info: "*At least one field must be filled", type: "info"}
+        { id: 6, info: "*At least one field must be filled", type: "info"}
     ],
     delete: [
         { id: 1, name: "id", label: "Client ID: ",  type: "number", placeholder: 1, min: 1, required: true }

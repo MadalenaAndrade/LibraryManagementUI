@@ -10,7 +10,7 @@ export function useGetResource(resource) {
 
     const inputedValues = Object.fromEntries(
       Object.entries(formValues).filter(
-        ([, value]) => value !== "" && value != null
+        ([, value]) => value !== "" && value !== null
       ));
     
     const hasInput = Object.keys(inputedValues).length > 0; 
