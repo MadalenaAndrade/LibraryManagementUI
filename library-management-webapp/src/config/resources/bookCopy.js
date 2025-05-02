@@ -20,6 +20,6 @@ export default {
         { id: 6, info: "*At least one field must be filled", type: "info"}
     ],
     delete: [
-        { id: 1, name: "Id", label: "Book Copy ID: ",  type: "number", placeholder: 1, min: 1, required: true }
+        { id: 1, name: "id", label: "Book Copy ID: ",  type: "number", placeholder: 1, min: 1, required: true }
     ]
 }

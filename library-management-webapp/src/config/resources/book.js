@@ -31,6 +31,6 @@ export default {
         { id: 10, info: "*At least one field must be filled", type: "info"}
     ],  
     delete: [
-        { id: 1, name: "SerialNumber", label: "Serial Number: ", type: "text", placeholder: "e.g. 1234567890123", pattern: "\\d{13}", title: "The serial number must have exactly 13 digits",  required: true }
+        { id: 1, name: "serialNumber", label: "Serial Number: ", type: "text", placeholder: "e.g. 1234567890123", pattern: "\\d{13}", title: "The serial number must have exactly 13 digits",  required: true }
     ]
 }

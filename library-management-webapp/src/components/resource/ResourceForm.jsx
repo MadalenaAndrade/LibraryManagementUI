@@ -17,6 +17,7 @@ import { usePostResource } from "../../hooks/useAddResource";
 import { useGetResource } from "../../hooks/useGetResourse";
 import { formatRetrievedData } from "../../utils/retrievedDataUtils";
 import { useUpdateResource } from "../../hooks/useUpdateResource";
+import { useDeleteResource } from "../../hooks/useDeleteResource";
 
 export default function ResourceForm(props) {
   const resourceConfigs = {
@@ -36,6 +37,7 @@ export default function ResourceForm(props) {
   const { postData } = usePostResource(props.resource);
   const { getData } = useGetResource(props.resource);
   const { putData } = useUpdateResource(props.resource);
+  const { filterData, deleteData } = useDeleteResource(props.resource);
   const [retrievedData, setRetrievedData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [paginationData, setPaginationData] = React.useState(null);
@@ -126,7 +128,6 @@ export default function ResourceForm(props) {
       }
       if (props.type === "get") {
         const result = await getData(data, 1);
-
         const formattedResult = formatRetrievedData(props.resource, result);
         setRetrievedData(formattedResult.data);
         setPaginationData(formattedResult.pagination);
@@ -136,6 +137,11 @@ export default function ResourceForm(props) {
       if (props.type === "update") {
         const message = await putData(data);
         setSuccessMessage(message);
+      }
+      if (props.type === "delete") {
+        const result = await getData(data);
+        const fieldInfo = filterData(result);
+        console.log(fieldInfo);
       }
     } catch (error) {
       setErrorMessage(error.message || "Unknown error");
