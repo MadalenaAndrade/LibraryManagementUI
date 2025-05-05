@@ -22,14 +22,15 @@ export function useDeleteResource(resource) {
         }
     }
 
-  /* function deleteData(data) {
+  function deleteData(data) {
     //dinamic route for the case of Rent Reception
     const endpoint =
       resource === "RentReception" ? "/Rent/Reception" : `${resource}`;
+    const path = Object.values(data)[0]
 
     return (
       api
-        .delete(`${endpoint}`, data, {
+        .delete(`${endpoint}/${path}`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -37,8 +38,8 @@ export function useDeleteResource(resource) {
         .then((response) => {
           console.log("Response Status:", response.status);
           if (response.status === 204) {
-            console.log("Resource updated sucessfully.");
-            return "Resource updated successfully!";
+            console.log("Resource deleted sucessfully.");
+            return "Resource deleted successfully!";
           } else {
             console.log("Unexpected response status:", response.status);
             return `Unexpected status: ${response.status}`;
@@ -83,7 +84,7 @@ export function useDeleteResource(resource) {
           throw new Error(errorMessage);
         })
     );
-  } */
+  } 
 
   return { filterData, deleteData };
 }

@@ -284,6 +284,21 @@ textarea {
   cursor: pointer;
 }
 
+.confirm-delete {
+  color: black;
+  text-align: middle;
+}
+
+.confirm-delete > button {
+  font-family: "Inter", sans-serif;
+  border-style: none;
+  border-radius: 0.2rem;
+  color: white;
+  background-color: #487fd8; 
+  cursor: pointer;
+  margin: 3px;
+  padding: 5px;
+}
 
 /* for small windows so that content isn't behind navbar */
 @media (max-width: 768px) {

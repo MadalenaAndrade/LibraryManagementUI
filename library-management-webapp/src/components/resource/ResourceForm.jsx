@@ -43,6 +43,10 @@ export default function ResourceForm(props) {
   const [paginationData, setPaginationData] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [lastQuery, setLastQuery] = React.useState(null);
+  const [showConfirmDelete, setShowConfirmDelete] = React.useState(false);
+  const [deleteConfirmationInfo, setDeleteConfirmationInfo] =
+    React.useState("");
+  const [deleteFormData, setDeleteFormData] = React.useState(null);
 
   // Form input states//
   // fields that will be used corresponding to the recource name and type
@@ -141,7 +145,10 @@ export default function ResourceForm(props) {
       if (props.type === "delete") {
         const result = await getData(data);
         const fieldInfo = filterData(result);
-        console.log(fieldInfo);
+
+        setDeleteConfirmationInfo(fieldInfo);
+        setDeleteFormData(data);
+        setShowConfirmDelete(true);
       }
     } catch (error) {
       setErrorMessage(error.message || "Unknown error");
@@ -178,6 +185,19 @@ export default function ResourceForm(props) {
     const totalPages = Math.ceil(paginationData.totalItems / 10);
     if (paginationData.currentPage < totalPages) {
       handlePageChange(paginationData.currentPage + 1);
+    }
+  }
+
+  async function handleAcceptDelete() {
+    setIsLoading(true);
+    try {
+      const message = await deleteData(deleteFormData);
+      setSuccessMessage(message);
+    } catch (error) {
+      setErrorMessage(error.message || "Error on changing page");
+    } finally {
+      setShowConfirmDelete(false);
+      setIsLoading(false);
     }
   }
 
@@ -226,6 +246,16 @@ export default function ResourceForm(props) {
                 ))}
               </>
             )}
+          </div>
+        )}
+        {showConfirmDelete && (
+          <div className="confirm-delete">
+            <p>
+              Confirm deletion of the <strong>'{props.resource}'</strong>{" "}
+              identified by <strong>'{deleteConfirmationInfo}'</strong>?
+            </p>
+            <button onClick={handleAcceptDelete}>Confirm</button>
+            <button onClick={() => setShowConfirmDelete(false)}>Cancel</button>
           </div>
         )}
       </div>
