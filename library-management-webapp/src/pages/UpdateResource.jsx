@@ -1,4 +1,4 @@
-import ResourceOptions from "../components/resource/ResourceOptions";
+import ResourceOptions from "../components/forms/ResourceOptions";
 
 export default function UpdateResource() {
   return (

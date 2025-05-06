@@ -7,10 +7,7 @@ import Client from "../../config/resources/client";
 import Publisher from "../../config/resources/publisher";
 import Rent from "../../config/resources/rent";
 import RentReception from "../../config/resources/rentReception";
-import TextAreaField from "../inputs/InputTextAreaField";
-import RadioField from "../inputs/InputRadioField";
-import ArrayField from "../inputs/InputArrayField";
-import InputField from "../inputs/InputField";
+import FieldRenderer from "./subcomponents/FieldRenderer";
 import { useArrayFields } from "../../hooks/useArrayFields";
 import { formatFormData } from "../../utils/formDataUtils";
 import { usePostResource } from "../../hooks/useAddResource";
@@ -68,43 +65,6 @@ export default function ResourceForm(props) {
     removeArrayField,
     clearArrayFields,
   } = useArrayFields(defaultArrayFields);
-
-  // Function to select the right field type
-  function selectFieldOptions(field) {
-    if (field.type === "array") {
-      return (
-        <ArrayField
-          field={field}
-          arrayValues={arrayFields[field.name]}
-          onChange={handleArrayFieldChange}
-          onAdd={addArrayField}
-          onRemove={removeArrayField}
-        />
-      );
-    } else if (field.type === "textArea") {
-      return <TextAreaField field={field} />;
-    } else if (field.type === "info") {
-      return <p className="info-detail">{field.info}</p>;
-    } else if (field.type === "updateInfo") {
-      return <p className="update-info-detail">{field.info}</p>;
-    } else {
-      return <InputField field={field} />;
-    }
-  }
-
-  function renderField(field) {
-    return field.type === "radio" ? (
-      <fieldset key={field.id}>
-        <legend>{field.label}</legend>
-        <RadioField field={field} />
-      </fieldset>
-    ) : (
-      <label key={field.id}>
-        {field.label}
-        {selectFieldOptions(field)}
-      </label>
-    );
-  }
 
   // "Data treatment" for API//
   async function handleSubmit(event) {
@@ -204,7 +164,16 @@ export default function ResourceForm(props) {
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
-        {fields.map(renderField)}
+        {fields.map((field) => (
+          <FieldRenderer
+            key={field.id}
+            field={field}
+            arrayFields={arrayFields}
+            handleArrayFieldChange={handleArrayFieldChange}
+            addArrayField={addArrayField}
+            removeArrayField={removeArrayField}
+          />
+        ))}
         <button className="submit-button">
           {isLoading ? (
             <>

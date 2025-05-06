@@ -1,4 +1,4 @@
-import ResourceOptions from "../components/resource/ResourceOptions";
+import ResourceOptions from "../components/forms/ResourceOptions";
 import React from "react";
 
 export default function AddResource() {
