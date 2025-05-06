@@ -54,6 +54,7 @@ _Screenshots will be added as development progresses_
 <img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/ResourcePage.png?raw=true" width="350" alt="Resource Page Example">
 
 ### Forms examples
+
 <p>
 <img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/FormExample1.png?raw=true" width="175" alt="Form Example 1" style="vertical-align: top">
 <img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/FormExample2.png?raw=true" width="175" alt="Form Example 2" style="vertical-align: top">
@@ -66,18 +67,18 @@ _Screenshots will be added as development progresses_
 ✅ Navigation between pages <br>
 ✅ Form validation implementation <br>
 ✳️ Responsive layout (in progress) <br>
-✳️ Forms for resources (in progress) <br>
-🟩 API integration <br>
-🟩 Visual feedback for the user <br>
-🟩 Testing <br>
+✅ Forms for resources <br>
+✅ API integration <br>
+✅ Visual feedback for the user <br>
+✳️ Components refactoration (in progress) <br>
+✳️ Testing (in progress) <br>
 
 ## 🔜 Next Steps
 
-1. Complete implementation of forms for each resource
-2. Integrate with the backend API using Axios or Fetch API
-3. Enhance user experience with visual feedback during operations
-4. Improve responsiveness across different devices
-5. Implement frontend error handling for API communication
+1. Refactoration of components for a more clean and organized code
+1. Add content to the About and Contact Pages
+1. Improve responsiveness across different devices
+1. Full testing
 
 ## 🎨 Design
 
