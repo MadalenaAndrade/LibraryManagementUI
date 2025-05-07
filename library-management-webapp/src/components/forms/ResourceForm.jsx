@@ -8,6 +8,10 @@ import Publisher from "../../config/resources/publisher";
 import Rent from "../../config/resources/rent";
 import RentReception from "../../config/resources/rentReception";
 import FieldRenderer from "./subcomponents/FieldRenderer";
+import SubmitButton from "./subcomponents/SubmitButton";
+import SubmitMessage from "./subcomponents/SubmitMessage";
+import RetrievedResults from "./subcomponents/RetrievedResults";
+import ConfirmDeleteDialog from "./subcomponents/ConfirmDeleteDialog";
 import { useArrayFields } from "../../hooks/useArrayFields";
 import { formatFormData } from "../../utils/formDataUtils";
 import { usePostResource } from "../../hooks/useAddResource";
@@ -86,29 +90,30 @@ export default function ResourceForm(props) {
       setErrorMessage("");
       await new Promise((resolve) => setTimeout(resolve, 1000)); //Minimum 1s delay to ensure spinner is visible and avoid abrupt user experience.
 
-      if (props.type === "add") {
-        const message = await postData(data);
-        setSuccessMessage(message);
-      }
-      if (props.type === "get") {
-        const result = await getData(data, 1);
-        const formattedResult = formatRetrievedData(props.resource, result);
-        setRetrievedData(formattedResult.data);
-        setPaginationData(formattedResult.pagination);
-        setCurrentPage(1);
-        setLastQuery(data);
-      }
-      if (props.type === "update") {
-        const message = await putData(data);
-        setSuccessMessage(message);
-      }
-      if (props.type === "delete") {
-        const result = await getData(data);
-        const fieldInfo = filterData(result);
-
-        setDeleteConfirmationInfo(fieldInfo);
-        setDeleteFormData(data);
-        setShowConfirmDelete(true);
+      switch (props.type) {
+        case "add":
+          setSuccessMessage(await postData(data));
+          break;
+        case "get":
+          const result = await getData(data, 1);
+          const formattedResult = formatRetrievedData(props.resource, result);
+          setRetrievedData(formattedResult.data);
+          setPaginationData(formattedResult.pagination);
+          setCurrentPage(1);
+          setLastQuery(data);
+          break;
+        case "update":
+          setSuccessMessage(await putData(data));
+          break;
+        case "delete":
+          const deletedResult = await getData(data);
+          const fieldInfo = filterData(deletedResult);
+          setDeleteConfirmationInfo(fieldInfo);
+          setDeleteFormData(data);
+          setShowConfirmDelete(true);
+          break;
+        default:
+          break;
       }
     } catch (error) {
       setErrorMessage(error.message || "Unknown error");
@@ -124,7 +129,6 @@ export default function ResourceForm(props) {
     try {
       const result = await getData(lastQuery, newPage);
       const formattedResult = formatRetrievedData(props.resource, result);
-
       setRetrievedData(formattedResult.data);
       setPaginationData(formattedResult.pagination);
       setCurrentPage(newPage);
@@ -174,58 +178,32 @@ export default function ResourceForm(props) {
             removeArrayField={removeArrayField}
           />
         ))}
-        <button className="submit-button">
-          {isLoading ? (
-            <>
-              <span className="spinner" /> Working on it...
-            </>
-          ) : (
-            "Submit"
-          )}
-        </button>
+        <SubmitButton isLoading={isLoading} />
       </form>
+
       <div className="submit-information">
-        {successMessage && <p className="success-message">{successMessage}</p>}
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <SubmitMessage
+          successMessage={successMessage}
+          errorMessage={errorMessage}
+        />
+
         {props.type === "get" && retrievedData && (
-          <div className="retrieved-data">
-            {retrievedData.length === 0 ? (
-              <p className="error-message">{props.resource} not found</p>
-            ) : (
-              <>
-                <h2 className="results-title">Results obtained:</h2>
-                {paginationData && paginationData.currentPage && (
-                  <div className="pagination-controls">
-                    <p>
-                      Page {paginationData.currentPage} of{" "}
-                      {Math.ceil(paginationData.totalItems / 10)}
-                    </p>
-                    <button onClick={handlePreviousClick}>Prev</button>
-                    <button onClick={handleNextClick}>Next</button>
-                  </div>
-                )}
-                {retrievedData.map((item, index) => (
-                  <ul key={index}>
-                    {Object.entries(item).map(([label, value]) => (
-                      <li key={label}>
-                        <strong>{label}:</strong> {value}
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </>
-            )}
-          </div>
+          <RetrievedResults
+            resource={props.resource}
+            retrievedData={retrievedData}
+            paginationData={paginationData}
+            onPrevious={handlePreviousClick}
+            onNext={handleNextClick}
+          />
         )}
+
         {showConfirmDelete && (
-          <div className="confirm-delete">
-            <p>
-              Confirm deletion of the <strong>'{props.resource}'</strong>{" "}
-              identified by <strong>'{deleteConfirmationInfo}'</strong>?
-            </p>
-            <button onClick={handleAcceptDelete}>Confirm</button>
-            <button onClick={() => setShowConfirmDelete(false)}>Cancel</button>
-          </div>
+          <ConfirmDeleteDialog
+            resource={props.resource}
+            confirmationInfo={deleteConfirmationInfo}
+            onConfirm={handleAcceptDelete}
+            onCancel={() => setShowConfirmDelete(false)}
+          />
         )}
       </div>
     </>
