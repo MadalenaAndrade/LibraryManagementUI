@@ -70,15 +70,16 @@ _Screenshots will be added as development progresses_
 ✅ Forms for resources <br>
 ✅ API integration <br>
 ✅ Visual feedback for the user <br>
-✳️ Components refactoration (in progress) <br>
+✅ Components refactoration <br>
 ✳️ Testing (in progress) <br>
+✳️ UI design (in progress) <br>
 
 ## 🔜 Next Steps
 
-1. Refactoration of components for a more clean and organized code
 1. Add content to the About and Contact Pages
-1. Improve responsiveness across different devices
-1. Full testing
+2. Changes on UI design
+3. Improve responsiveness across different devices
+4. Full testing
 
 ## 🎨 Design
 

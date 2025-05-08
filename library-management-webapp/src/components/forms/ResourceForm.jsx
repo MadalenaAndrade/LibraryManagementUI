@@ -15,7 +15,7 @@ import ConfirmDeleteDialog from "./subcomponents/ConfirmDeleteDialog";
 import { useArrayFields } from "../../hooks/useArrayFields";
 import { formatFormData } from "../../utils/formDataUtils";
 import { usePostResource } from "../../hooks/useAddResource";
-import { useGetResource } from "../../hooks/useGetResourse";
+import { useGetResource } from "../../hooks/useGetResource";
 import { formatRetrievedData } from "../../utils/retrievedDataUtils";
 import { useUpdateResource } from "../../hooks/useUpdateResource";
 import { useDeleteResource } from "../../hooks/useDeleteResource";
