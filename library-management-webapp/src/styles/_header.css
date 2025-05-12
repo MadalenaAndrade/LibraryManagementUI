@@ -1,0 +1,36 @@
+/* ========== HEADER ========== */
+header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  padding: 1.5625rem;
+  background-color: var(--primary);
+  color: var(--text-light);
+  font-size: 0.6rem;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+header > img {
+  width: 3.75rem;
+  margin-right: 0.3125rem;
+}
+
+
+
+/*========== changes on windows with width < 720px ==========*/
+@media (max-width: 720px) {
+  header {
+    padding-left: 0.3125rem;
+    padding-bottom: 1.25rem;
+  }
+}
+  
+
+  /*========== changes on windows with width < 720px ==========*/
+@media (max-width: 340px) {
+  header {
+    font-size: 0.5rem;
+  }
+}

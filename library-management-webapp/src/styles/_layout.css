@@ -1,0 +1,54 @@
+/* ========== GENERAL STYLES ========== */
+* {
+  box-sizing: border-box; /*for padding do not distort the layout*/
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: var(--background);
+  color: var(--text-light);
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  margin-top: 0;
+  margin-bottom: 0.625rem;
+}
+
+/*NavBar and header wrapper*/
+.navHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/*main layout*/
+main {
+  padding-left: 10.3125rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 7.8125rem;
+  width: 100%;
+}
+
+
+/*========== changes on windows with width < 720px ==========*/
+@media (max-width: 720px) {
+  /*body*/
+  main {
+    margin-top: 6.25rem;
+    padding-left: 0;
+  }
+
+  .subtitle {
+    margin-bottom: 0;
+  }
+}

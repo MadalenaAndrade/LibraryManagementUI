@@ -1,0 +1,22 @@
+/* ========== FOOTER ========== */
+footer {
+  margin-top: 3.125rem;
+  padding-left: 12.5rem;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--text-light); 
+  font-size: 0.8rem;
+}
+
+footer > p {
+  margin-right: 0.9375rem;
+}
+
+
+/*========== changes on windows with width < 720px ==========*/
+@media (max-width: 720px) {
+  footer {
+  padding-left: 0;
+  }
+}
