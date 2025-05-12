@@ -20,6 +20,47 @@ body {
   margin-bottom: 0.625rem;
 }
 
+.about-subtitle {
+  max-width: 62.5rem;
+  margin-bottom: 3.125rem;
+}
+
+.about-content {
+  border: solid;
+  max-width: 62.5rem;
+  padding: 0.9375rem;
+  text-align: justify;
+  margin-right: 0.3125rem;
+}
+
+.about-content >ul {
+  border-bottom: 0.125rem dashed;
+  list-style-type: none;
+  padding-left: 3.125rem;
+  padding-bottom: 1.875rem;
+}
+
+.contact-content >ul {
+  border: solid;
+  list-style-type: none;
+  padding: 3.125rem;
+}
+
+.contact-content >ul >li {
+  padding: 1.25rem;
+}
+
+.contact-content a {
+  color: #7fd3fa; 
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-content a:hover {
+  color: var(--text-light);
+  text-decoration: underline;
+}
+
 /*NavBar and header wrapper*/
 .navHeader {
   display: flex;
@@ -51,4 +92,11 @@ main {
   .subtitle {
     margin-bottom: 0;
   }
+
+  .about-content >ul {
+  border-bottom: 2px dashed;
+  list-style-type: none;
+  padding-left: 0;
+  padding-bottom: 30px;
+}
 }
