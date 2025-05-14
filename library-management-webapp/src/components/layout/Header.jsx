@@ -1,7 +1,9 @@
+import libraryIcon from "../../images/library-icon.png";
+
 export default function Header() {
   return (
     <header>
-      <img src="/src/images/library-icon.png" alt="Library logo" />
+      <img src={libraryIcon} alt="Library logo" />
       <h1>LibraryManagementApp</h1>
     </header>
   );

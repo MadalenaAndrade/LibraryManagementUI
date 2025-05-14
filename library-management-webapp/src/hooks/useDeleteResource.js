@@ -51,10 +51,13 @@ export function useDeleteResource(resource) {
           if (error.response) {
             // When server responds with an error
             const data = error.response.data;
-            console.log("Server responded with an error: ", data);
-            
+            const status = error.response.status;
+            console.log(`Server responded with status ${status}: `, data);
+
+            if (status === 403) {
+              errorMessage = "Access denied: You don't have permission to perform this action."
+            } else if (typeof data === "object" && data !== null) {
             // This handles validation errors returned from ASP.NET ModelState for user display.
-            if (typeof data === "object" && data !== null) {
               const errorsObject = data.errors || data; //// Use 'errors' if available, fallback to data itself
 
               const allMessages = Object.values(errorsObject)

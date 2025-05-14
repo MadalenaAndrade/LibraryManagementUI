@@ -1,4 +1,10 @@
 import ResourceOptions from "../components/forms/ResourceOptions";
+import authorIcon from "../images/author-icon.png";
+import bookIcon from "../images/book-icon.png";
+import bookCopyIcon from "../images/book-copy-icon.png";
+import categoryIcon from "../images/category-icon.png";
+import clientIcon from "../images/client-icon.png";
+import publisherIcon from "../images/publisher-icon.png";
 
 export default function DeleteResource() {
   return (
@@ -10,37 +16,37 @@ export default function DeleteResource() {
 
       <div className="resource-container">
         <ResourceOptions
-          src="/src/images/author-icon.png"
+          src={authorIcon}
           alt="Author icon"
           resource="Author"
           type="delete"
         />
         <ResourceOptions
-          src="/src/images/book-icon.png"
+          src={bookIcon}
           alt="Book icon"
           resource="Book"
           type="delete"
         />
         <ResourceOptions
-          src="/src/images/book-copy-icon.png"
+          src={bookCopyIcon}
           alt="Book copy icon"
           resource="BookCopy"
           type="delete"
         />
         <ResourceOptions
-          src="/src/images/category-icon.png"
+          src={categoryIcon}
           alt="Category icon"
           resource="Category"
           type="delete"
         />
         <ResourceOptions
-          src="/src/images/client-icon.png"
+          src={clientIcon}
           alt="Client icon"
           resource="Client"
           type="delete"
         />
         <ResourceOptions
-          src="/src/images/publisher-icon.png"
+          src={publisherIcon}
           alt="Publisher icon"
           resource="Publisher"
           type="delete"
