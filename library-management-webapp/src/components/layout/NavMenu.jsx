@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react"; // useEffect and useRef to close menu if clicked outside nabvar
 import NavBar from "./NavBar";
-import { FaBars } from "react-icons/fa"; // for hamburger icon, needs to install
+import { FaBars } from "react-icons/fa"; // For hamburger icon, needs to install
 
-// component that enables two type of navigation menus depending on the size of the window
-
+// Component that enables two type of navigation menus depending on the size of the window
 export default function NavMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null); //refs menu
 
   function toggleMenu() {
     setIsOpen(!isOpen);
@@ -14,6 +14,25 @@ export default function NavMenu() {
   function closeMenu() {
     setIsOpen(false);
   }
+
+  // function to menu if clicked outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeMenu();
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
     <div className="nav-wrapper">
@@ -34,7 +53,7 @@ export default function NavMenu() {
       </nav>
 
       {isOpen && (
-        <nav className="mobile-nav">
+        <nav className="mobile-nav" ref={menuRef}>
           <ul onClick={closeMenu}>
             <NavBar path="/" text="Home" />
             <NavBar path="/add" text="Add Resource" />
