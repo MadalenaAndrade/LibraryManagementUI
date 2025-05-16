@@ -12,11 +12,16 @@ header {
   right: 0;
 }
 
-header > img {
+.header-link {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-link > img {
   width: 3.75rem;
   margin-right: 0.3125rem;
 }
-
 
 
 /*========== changes on windows with width < 720px ==========*/
