@@ -22,6 +22,7 @@ This project was developed to deepen my understanding of frontend fundamentals (
 
 ## 🔧 Technologies Used
 
+- **Node.js + npm**: Environment and package management
 - **React**: Library for building the user interface
 - **React Router**: Navigation between views/pages
 - **Vite**: Fast frontend tooling and build system
@@ -99,7 +100,7 @@ Responsive layout with adaptive navigation: <br>
 <img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/DeleteResource2.png?raw=true" width="175" alt="Delete Form Example 2" style="vertical-align: top">
 </p>
 
-### Data and API errors displayed
+### API & UI feedback
 
 Real-time user feedback from the UI and API (success and error):
 
@@ -134,9 +135,35 @@ Real-time user feedback from the UI and API (success and error):
 All icons and images were manually designed for this project, providing a unique and consistent visual identity. <br>
 **Copyright Notice**: All visual elements (icons and images) in this project are original creations and are `©Madalena Andrade, 2025`. These assets may be used with proper attribution to the original creator.
 
-## 📝 Notes
+## 📎 Running locally
+
+To run the project locally:
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (recommended: version 16 or later)
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/MadalenaAndrade/LibraryManagementUI
+
+# Navigate to the React project folder
+cd LibraryManagementUI/library-management-webapp
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+## 📝 Deployment Notes
+
+> ℹ️ This project was deployed by copying the static files (from /dist created after `npm run build`) to the `wwwroot/` folder of the [Library Management API](https://github.com/MadalenaAndrade/LibraryManagementAPI). More info on the full deployment setup can be found in that project's README.
+> If you'd like to run this project locally without hosting both frontend and backend on the same server, you'll need to update the Axios base URL to point to your API endpoint and ensure that CORS is properly configured on your API project.
+
+## 📝 Final Notes
 
 While this project is considered feature-complete, further improvements and refinements may be added as I continue learning and exploring frontend development.
-
-> ℹ️ This project was deployed by copying the static files (from `npm run build`) to the `wwwroot/` folder of the [Library Management API](https://github.com/MadalenaAndrade/LibraryManagementAPI). More info on the full deployment setup can be found in that project's README.
-> If you'd like to run this project locally without hosting both frontend and backend on the same server, you'll need to update the Axios base URL to point to your API endpoint and ensure that CORS is properly configured on your API project.
