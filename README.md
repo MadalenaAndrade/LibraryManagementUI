@@ -35,21 +35,21 @@ This project was developed to deepen my understanding of frontend fundamentals (
 
 ## 📋 Current Project Structure
 
-The project follows a modular folder structure for scalability and maintainability:
-[**librart-management-webapp**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp)
-├─[**public/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/public) # Static assets as SVG/favicon
-├─[**src/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src)
-│ ├─[**api/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/api) # API setup and Axios base configuration
-| ├─[**components/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/components) # Reusable UI elements (forms, buttons, inputs)
-| ├─[**config/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/config): Configuration files for form structures and validation rules
-| ├─[**hooks/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/hooks): Custom React hooks for shared logic
-| ├─[**images/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/pages): Custom-designed icons and visual assets
-| ├─[**pages/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/pages): Main application pages
-| ├─[**styles/**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/index.css): Global styles for the application
-| ├─[**utils/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/utils): Utility functions (e.g., formatting, helpers)
-| ├─[**App.jsx**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/App.jsx): Main component that manages routes and application navigation
-| └─[**main.jsx**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/index.css): React application entry point
-└─[**index.html**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/index.html): Main HTML file that serves as the entry point for the browser
+The project follows a modular folder structure for scalability and maintainability: <br>
+[**librart-management-webapp**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp) <br>
+├─[**public/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/public) # Static assets as SVG/favicon <br>
+├─[**src/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src) <br>
+│ ├─[**api/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/api) # API setup and Axios base configuration <br>
+| ├─[**components/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/components) # Reusable UI elements (forms, buttons, inputs) <br>
+| ├─[**config/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/config): Configuration files for form structures and validation rules <br>
+| ├─[**hooks/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/hooks): Custom React hooks for shared logic <br>
+| ├─[**images/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/pages): Custom-designed icons and visual assets <br>
+| ├─[**pages/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/pages): Main application pages <br>
+| ├─[**styles/**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/index.css): Global styles for the application <br>
+| ├─[**utils/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/utils): Utility functions (e.g., formatting, helpers) <br>
+| ├─[**App.jsx**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/App.jsx): Main component that manages routes and application navigation <br>
+| └─[**main.jsx**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/index.css): React application entry point <br>
+└─[**index.html**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/index.html): Main HTML file that serves as the entry point for the browser <br>
 
 ## 🖼️ Screenshots
 
