@@ -1,15 +1,15 @@
 # LibraryManagementUI
 
-A new on-going project where I'm building a **React frontend** to consume the [Library Management API](https://github.com/MadalenaAndrade/LibraryManagementAPI) and provide a **user-friendly web interface**.
-This project aims to strengthen my knowledge of frontend fundamentals (**HTML**, **CSS**, and **JavaScript**) while exploring how the frontend connects with the backend to display dynamic data and create a user-friendly web interface.
+LibraryManagementUI is a web interface built with **React** to consume the [Library Management API](https://github.com/MadalenaAndrade/LibraryManagementAPI) and provide a **user-friendly web interface** for managing library-related resources.
+This project was developed to deepen my understanding of frontend fundamentals (**HTML**, **CSS**, and **JavaScript**), and to explore the interaction between frontend and backend systems to display dynamic data effectively.
 
-> **Note:** This project is currently under development and not yet usable. As a learning project, some implementations may not follow best practices initially, but I intend to follow React best practices as I continue learning and improving.
+> **Note:** This project has been published [here](https://libmanagementapi-ashnc2hsh3gma6fc.westeurope-01.azurewebsites.net). Due to API IP restrictions, only **GET** requests are fully functional online. As a learning project, some early implementations may not follow best practices, but I am actively working on improving the codebase and aligning it with React best practices.
 
 ## 🚀 Features
 
 - **Responsive Interface**: Adaptable layout for different screen sizes
 - **Complete CRUD System**: Interfaces for Creating, Reading, Updating, and Deleting resources
-- **Form Validation**: Client-side validation for all input fields
+- **Form Validation**: Client-side validation for all input fields before submission
 - **Manageable Resources**:
   - Authors
   - Books
@@ -23,41 +23,95 @@ This project aims to strengthen my knowledge of frontend fundamentals (**HTML**,
 ## 🔧 Technologies Used
 
 - **React**: Library for building the user interface
-- **React Router**: For navigation between components
-- **Vite**: Next generation frontend tooling for fast development and builds
-- **CSS**: Styling and responsive layout
-- **JavaScript/JSX**: Logic and component structuring
+- **React Router**: Navigation between views/pages
+- **Vite**: Fast frontend tooling and build system
+- **CSS**: Custom styling and layout responsiveness
+- **JavaScript/JSX**: Core language for logic and components
+
+## 📦 Additional Libraries
+
+- **Axios**: Handles HTTP requests to the backend API
+- **React Icons**: Includes icons like _FaBars_ used for the responsive hamburger menu
 
 ## 📋 Current Project Structure
 
-The project follows a modular structure with some key files and directories in such as:
-
-- [**index.html**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/index.html): Main HTML file that serves as the entry point for the browser
-- [**src/App.jsx**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/App.jsx): Main component that manages routes and application navigation
-- [**src/index.css**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/index.css): Global styles for the application
-- [**src/main.jsx**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/index.css): The entry point of the React application
-- [**src/components/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/components): Reusable UI components (forms, buttons, inputs)
-- [**src/config/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/config): Configuration files for form structures and validations
-- [**src/pages/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/pages): Main application pages organized by functionality
-- [**src/images/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/pages): Custom-designed icons and visual assets
+The project follows a modular folder structure for scalability and maintainability:
+[**librart-management-webapp**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp)
+├─[**public/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/public) # Static assets as SVG/favicon
+├─[**src/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src)
+│ ├─[**api/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/api) # API setup and Axios base configuration
+| ├─[**components/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/components) # Reusable UI elements (forms, buttons, inputs)
+| ├─[**config/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/config): Configuration files for form structures and validation rules
+| ├─[**hooks/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/hooks): Custom React hooks for shared logic
+| ├─[**images/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/pages): Custom-designed icons and visual assets
+| ├─[**pages/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/pages): Main application pages
+| ├─[**styles/**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/index.css): Global styles for the application
+| ├─[**utils/**](https://github.com/MadalenaAndrade/LibraryManagementUI/tree/main/library-management-webapp/src/utils): Utility functions (e.g., formatting, helpers)
+| ├─[**App.jsx**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/App.jsx): Main component that manages routes and application navigation
+| └─[**main.jsx**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/src/index.css): React application entry point
+└─[**index.html**](https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/library-management-webapp/index.html): Main HTML file that serves as the entry point for the browser
 
 ## 🖼️ Screenshots
 
-_Screenshots will be added as development progresses_
-
 ### HomePage
 
-<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/HomePage.png?raw=true" width="350" alt="HomePage">
+Responsive layout with adaptive navigation: <br>
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/HomePage1.png?raw=true" width="350" alt="HomePage"> <br>
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/HomePage2.png?raw=true" width="350" alt="HomePage Reduced window"> <br>
 
-### Resource Page example
+<p>
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/HomePage3.png?raw=true" width="175" alt="HomePage on mobile">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/HomePage4.png?raw=true" width="175" alt="NavBar on mobile">
+</p>
 
-<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/ResourcePage.png?raw=true" width="350" alt="Resource Page Example">
+### Resource Page examples
+
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/ResourcePage1.png?raw=true" width="350" alt="Resource Page Example"> <br>
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/ResourcePage2.png?raw=true" width="175" alt="Resource Page Example on mobile">
 
 ### Forms examples
 
+#### Add Resource
+
 <p>
-<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/FormExample1.png?raw=true" width="175" alt="Form Example 1" style="vertical-align: top">
-<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/FormExample2.png?raw=true" width="175" alt="Form Example 2" style="vertical-align: top">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/AddResource1.png?raw=true" width="175" alt="Add Form Example 1" style="vertical-align: top">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/AddResource2.png?raw=true" width="175" alt="Add Form Example 2" style="vertical-align: top">
+</p>
+
+#### Get Resource
+
+<p>
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/GetResource1.png?raw=true" width="175" alt="Get Form Example 1" style="vertical-align: top">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/GetResource2.png?raw=true" width="175" alt="Get Form Example 2" style="vertical-align: top">
+</p>
+
+#### Update Resource
+
+<p>
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/UpdateResource1.png?raw=true" width="175" alt="Update Form Example 1" style="vertical-align: top">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/UpdateResource2.png?raw=true" width="175" alt="Update Form Example 2" style="vertical-align: top">
+</p>
+
+#### Delete Resource
+
+<p>
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/DeleteResource1.png?raw=true" width="175" alt="Delete Form Example 1" style="vertical-align: top">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/DeleteResource2.png?raw=true" width="175" alt="Delete Form Example 2" style="vertical-align: top">
+</p>
+
+### Data and API errors displayed
+
+Real-time user feedback from the UI and API (success and error):
+
+<p>
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/AddedSuccess.png?raw=true" width="175" alt="Add success message" style="vertical-align: top">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/AddedError.png?raw=true" width="175" alt="Add error message" style="vertical-align: top">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/ConfirmDeletetion.png?raw=true" width="175" alt="Confirm deletetion message" style="vertical-align: top">
+</p>
+<p>
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/DeletedError.png?raw=true" width="175" alt="Delete resource message" style="vertical-align: top">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/AllDataPagination.png?raw=true" width="175" alt="Data with pagination" style="vertical-align: top">
+<img src="https://github.com/MadalenaAndrade/LibraryManagementUI/blob/main/Screenshots/FieldValidation.png?raw=true" width="175" alt="Input validation message" style="vertical-align: top">
 <p>
 
 ## 🔄 Current Development Status
@@ -66,20 +120,14 @@ _Screenshots will be added as development progresses_
 ✅ Functional homepage <br>
 ✅ Navigation between pages <br>
 ✅ Form validation implementation <br>
-✳️ Responsive layout (in progress) <br>
+✅ Responsive layout <br>
 ✅ Forms for resources <br>
 ✅ API integration <br>
 ✅ Visual feedback for the user <br>
 ✅ Components refactoration <br>
-✳️ Testing (in progress) <br>
-✳️ UI design (in progress) <br>
-
-## 🔜 Next Steps
-
-1. Add content to the About and Contact Pages
-2. Changes on UI design
-3. Improve responsiveness across different devices
-4. Full testing
+✅ Website publishing <br>
+✅ Testing (may continue in the future) <br>
+✅ UI design (may continue in the future) <br>
 
 ## 🎨 Design
 
@@ -88,4 +136,7 @@ All icons and images were manually designed for this project, providing a unique
 
 ## 📝 Notes
 
-This project is in active development phase and new features will be added regularly.
+While this project is considered feature-complete, further improvements and refinements may be added as I continue learning and exploring frontend development.
+
+> ℹ️ This project was deployed by copying the static files (from `npm run build`) to the `wwwroot/` folder of the [Library Management API](https://github.com/MadalenaAndrade/LibraryManagementAPI). More info on the full deployment setup can be found in that project's README.
+> If you'd like to run this project locally without hosting both frontend and backend on the same server, you'll need to update the Axios base URL to point to your API endpoint and ensure that CORS is properly configured on your API project.
